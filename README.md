@@ -1,24 +1,46 @@
-# README
+# <WayMe>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+ユーザーが夢や目標を掲げ実現するまでの道のりを投稿・共有・タスク管理していくサイト
 
-Things you may want to cover:
 
-* Ruby version
+### サイトテーマ
 
-* System dependencies
+<人生設計>
+各ユーザーの人生設計・進歩状況を投稿することで、「パブリック・コミットメント」の成功をさせる。
+また、他のユーザーと人生設計・進歩状況を共有することで違ったプロセスの運び方の発見や意見交換でより夢や目標の実現度を上げていく。
 
-* Configuration
 
-* Database creation
+### テーマを選んだ理由
 
-* Database initialization
+<自分に必要なものだった>
+エンジニアに目指そう、DMMWEBCAMPに入ろうと思ったきかっけが人生設計を本気で考えてからだった。
+現スクールでも自分の人生の在り方から考えさせられ、メンターの方に公言するカリキュラムがあり、その必要性を私は深く共感しました。
+そこで、昨今多くの方が使用しているSNSに結び付け他者に夢や目標を公言・共有することでより多くの方に人生を見つめ直す場の提供を考えました。
+現在あるSNSは「今」や「過去」を共有しているものばかりですがWayMe「未来」を他者に共有していくサービスです。
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+### ターゲットユーザ
 
-* Deployment instructions
+<老若男女>
+子供や学生といった学びの段階である方たちから転職や人生の再スタートを望んでいる方。
+また、定年後の人生を計画されたい高齢者の方々と幅広い層をターゲットとしています。
 
-* ...
+
+### 主な利用シーン
+<人生や夢を考えた時から達成するまで>
+
+
+## 設計書
+<...>
+
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,MySQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
+
+## 使用素材
+- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
+- 使用しない場合は、使用素材の項目をREADMEから削除してください。
