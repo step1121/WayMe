@@ -3,11 +3,12 @@
   <i class="fas fa-check-circle count-icon " style="color: green;"></i>
 
   <p class="text-success count-font">
+    <!--ビジョン終了日時-->
    <%= vision.updated_at.strftime('%Y-%m-%d') %>
   </p>
 
 <% else %>
-  <!--ビジョン未達成の場合の達成予定日と本日も差-->
+  <!--ビジョン未達成の場合の達成予定日と本日の差-->
   <!--達成予定日一年以上先の場合-->
 　<% if (vision.finish_on - Date.today) > 366 %>
     <i class="fas fa-shoe-prints count-icon" style="color: #82cded;"></i>
