@@ -1,8 +1,8 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+  devise :registerable, :recoverable, :rememberable, :validatable,
+         :database_authenticatable, authentication_keys: [:name]
          
   has_one_attached :profile_image
   
@@ -15,8 +15,7 @@ class User < ApplicationRecord
   scope :only_active, -> { where(user_status: false) }
   
   validates :name, uniqueness: true, length: { minimum: 2, maximum: 20 }, presence: true
-  validates :birthday, presence: true
-  validates :biography, length: { maximum: 50 }, presence: true
+  validates :biography, length: { maximum: 50 }
   
   def get_profile_image
     (profile_image.attached?) ? profile_image : 'no_image.jpg'
