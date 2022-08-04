@@ -15,9 +15,9 @@ class Public::TasksController < ApplicationController
       redirect_to vision_path(@vision)
     else
       @tasks = @vision.tasks.order(completion_on: "ASC")
-      # 未完了TASK
+      # 未完了タスク
       @tasks_yet = @tasks.yet
-      # 完了TASK
+      # 完了タスク
       @tasks_complete =@tasks.complete
       render 'public/visions/show'
     end
