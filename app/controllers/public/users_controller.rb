@@ -1,10 +1,9 @@
 class Public::UsersController < ApplicationController
-  before_action :authenticate_customer!
-  before_action :set_current_customer, only: [:update, :out_check, :out]
+  before_action :authenticate_user!
+  before_action :set_current_user, except: [:show]
   
   
   def edit
-    @user = User.find(params[:id])
   end
 
   def show    
@@ -32,7 +31,7 @@ class Public::UsersController < ApplicationController
   
   private
   
-  def set_current_customer
+  def set_current_user
     @user = current_user
   end
 
