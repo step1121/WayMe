@@ -7,8 +7,13 @@ class Public::VisionsController < ApplicationController
   end
   
   def create
+    @vision = Vision.new(vision_params)
     @vision.user_id = current_user.id
-    @vision.save ? (redirect_to vision_path(@vision)) : (render :new)
+    if @vision.save
+      redirect_to vision_path(@vision)
+    else
+      render :new
+    end
   end
   
   def index
