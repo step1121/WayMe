@@ -1,23 +1,39 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_customer!
+  before_action :set_current_customer, only: [:update, :out_check, :out]
+  
   
   def edit
+    @user = User.find(params[:id])
   end
 
   def show    
     @user = User.find(params[:id])
-  end
-
-  def out_check
+    @visions = @user.visions
   end
   
   def update
+    if @user.update(user_params)
+      redirect_to user_path, notice: '会員情報の更新が完了しました。'
+    else
+      render :edit
+    end
   end
   
   def out_check
   end
   
   def out
+    @user.update(user_status: true)
+    reset_session
+    redirect_to root_path
+  end
+  
+  
+  private
+  
+  def set_current_customer
+    @user = current_user
   end
 
   def user_params

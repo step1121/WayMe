@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  namespace :public do
-    get 'searchs/search'
-  end
+
   namespace :admin do
     resources :users, only: [:index, :show, :update]
     resources :genres, only: [:index, :create, :update]
@@ -16,8 +14,9 @@ Rails.application.routes.draw do
     get 'users/out_check' => 'users#out_check'
     patch 'users/out' => 'users#out'
     get '/search' => 'searchs#search'
-    resources :visions
-    resources :tasks, except: [:new, :show, :index]
+    resources :visions do
+      resources :tasks, except: [:new, :show, :index]
+    end
     resources :user, only: [:edit, :update, :show] do
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
