@@ -1,0 +1,6 @@
+<%= form_with model: @genre, url: admin_genres_path, method: :post do |f| %>
+  <%= f.label :name, "カテゴリー名" %>
+  <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+  <%= f.submit "登録" %>
+<% end %>
+<%= render "index", genres: @gennrs %>
