@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  
+  devise_for :admin, controllers: {
+    sessions: 'admin/sessions'
+  }
+  
 
   namespace :admin do
     resources :genres, only: [:index, :create, :update]
@@ -10,8 +15,14 @@ Rails.application.routes.draw do
     end
   end
   
-  devise_for :admin, skip: [:registrations,:passwords], controllers: {
-    sessions: 'admin/sessions'
+  #トップページでログイン可能
+  devise_scope :user do
+      root :to => 'public/sessions#new'
+  end
+   
+  devise_for :users, skip: [:passwords], controllers: {
+    registrations: 'public/registrations',
+    sessions: 'public/sessions'
   }
   
   scope module: :public do
@@ -19,7 +30,7 @@ Rails.application.routes.draw do
     resources :visions do
       resources :tasks, except: [:new, :show, :index]
     end
-    resources :user, only: [:edit, :update, :show] do
+    resources :users, only: [:edit, :update, :show] do
       collection do
         get 'users/out_check' => 'users#out_check'
         patch 'users/out' => 'users#out'
@@ -30,16 +41,6 @@ Rails.application.routes.draw do
     end
   end
   
-  #トップページでログイン可能
-  unauthenticated do
-    as :user do
-      root :to => 'public/sessions#new'
-    end
-  end
-   
-  devise_for :users, skip: [:passwords], controllers: {
-    registrations: 'public/registrations',
-    sessions: 'public/sessions'
-  }
+  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

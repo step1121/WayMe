@@ -2,7 +2,7 @@ class Admin::VisionsController < ApplicationController
   before_action :authenticate_admin!
  
   def index
-    @visions = Vision.pages(params[:page])
+    @visions = Vision.page(params[:page])
   end
 
   def show
