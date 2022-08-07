@@ -1,0 +1,31 @@
+<h2>投稿詳細</h2>
+
+<%= @vision.user.name %>
+<%= @vision.title %>
+<%= @vision.body %>
+<%= @vision.finish_on %>
+<%= @vision.finish_status %>
+<%= link_to "編集", edit_vision_path(@vision.id) %>
+
+<%#= form_with model: [@task, @vision], url: vision_tasks_path(@task.vision_id), method: :post do |f| %>
+<%#= f.hidden_field :vision_id, :value => @vision_id %>
+<%= form_with(model:[@vision, @task], local: false) do |f| %>
+   <div class="form-group">
+    <%= f.label :content, "タスク" %>
+    <%= f.text_field :content, class: 'form-control vision_title' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :completion_on, "完了予定日" %><br />
+    <%= f.date_select :completion_on, use_month_numbers: true, start_year: Time.now.year, end_year: (Time.now.year + 100), discard_day:true, selected: Date.today %>
+  </div>
+  <div class="form-group">
+    <%= f.submit "投稿する" %>
+  </div>
+<% end %>
+
+<% @tasks.each do |task| %>
+ <%= task.content %>
+ <%= task.completion_status %>
+ <%= task.completion_on %>
+ <%= link_to "編集", edit_vision_task_path(task.id) %>
+<% end %>

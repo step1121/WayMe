@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   
 
   namespace :admin do
-    resources :genres, only: [:index, :create, :update]
+    resources :genres, only: [:index, :create, :update, :edit]
     resources :visions, only: [:index, :show, :destroy]
     resources :users, only: [:index, :show, :update] do
       collection do

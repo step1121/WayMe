@@ -1,0 +1,6 @@
+<%= form_with model: @genre, url: admin_genre_path(@genre.id), method: :patch do |f| %>
+  <%= f.label :name, "カテゴリー名" %>
+  <%= f.text_field :name, value: @genre.name %>
+  <%= f.submit "登録" %>
+<% end %>
+<%= render "index", genres: @gennrs %>

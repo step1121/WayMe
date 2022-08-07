@@ -5,7 +5,7 @@ class CreateVisions < ActiveRecord::Migration[6.1]
       t.integer :user_id, null:false
       t.string :title, null:false
       t.text :body, null:false
-      t.date :finish_on, default: -> { '(CURRENT_DATE)' }, null: false
+      t.date :finish_on, null: false
       t.boolean :finish_status, default: false
 
       t.timestamps
