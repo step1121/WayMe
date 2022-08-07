@@ -1,0 +1,4 @@
+<div class="row col-8 d-flex justify-content-center">
+  <%= render 'form', vision: @vision, task: @task, url: edit_vision_task_path(@vision.id), submit: '変更' %>
+</div>
+<%= link_to 'Destroy',  vision_task_path(vision_id: @vision.id, id: @task.id), method: :delete, data: { confirm: '本当にこのタスクを消しますか？' }, class: "btn btn-sm btn-danger" %>
