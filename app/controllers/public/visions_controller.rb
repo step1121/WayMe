@@ -1,6 +1,6 @@
 class Public::VisionsController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_item, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_vision, only: [:show, :edit, :update, :destroy]
   
   def new
     @vision = Vision.new
@@ -18,6 +18,7 @@ class Public::VisionsController < ApplicationController
   
   def index
     @visions = Vision.page(params[:page])
+    @all_visions = Vision.all
   end
   
   def show
@@ -41,7 +42,7 @@ class Public::VisionsController < ApplicationController
   private
   
   def vision_params
-    params.require(:vision).permit(:title, :body, :finish_on)
+    params.require(:vision).permit(:title, :genre_id, :body, :finish_on)
   end
   
   def ensure_vision

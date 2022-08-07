@@ -1,0 +1,15 @@
+<div class="row py-3 mx-3 justify-content-center">
+  <h3>投稿一覧</h3>
+  <p class="col p-2">(全<%= all_visions.count %>件)</p>
+  <table class="table table-borderless">
+    <% visions.each do |vision| %>
+    <tr class="d-flex d-block flex-wrap justify-content-center ">
+        <td class="new_item_table">
+          <%= link_to vision.user.name, user_path(vision.user.id) %>
+          <%= link_to vision.title, visions_path(vision.id) %>
+          <%= vision.finish_status %>
+        </td>
+    </tr>
+    <% end %>
+  </table>
+</div>

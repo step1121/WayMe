@@ -6,9 +6,13 @@ class Public::TasksController < ApplicationController
   end
   
   def create
+    vision = Vision.find(params[:vision_id])
+    @task = Task.new(task_params)
+    @task.vision_id = vision.id
     if @task.save
-      redirect_to vision_path
+      redirect_to vision_path(@vision.id)
     else
+      @task = Task.all
       render vision_path
     end
   end
@@ -30,7 +34,7 @@ class Public::TasksController < ApplicationController
   private
   
   def task_params
-    params.require(:task).permit(:content, :completion_on)
+    params.require(:task).permit(:content, :completion_on,:vision_id)
   end
   
   def set_task

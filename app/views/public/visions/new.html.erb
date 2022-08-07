@@ -1,17 +1,4 @@
-<%= form_with model: @vision, url: visions_path, method: :post do |f| %>
-  <div class="form-group">
-    <%= f.label :title, "Dream" %>
-    <%= f.text_field :title, class: 'form-control vision_title' %>
+<div class="container col-12">
+  <div class="row col-8 d-flex justify-content-center">
+    <%= render 'form', vision: @vision, url: visions_path, submit: '投稿' %>
   </div>
-  <div class="form-group">
-    <%= f.label :body,"Detail" %>
-    <%= f.text_area :body, class: 'form-control vision_body' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :finish_on, "達成予定日" %><br />
-    <%= f.date_select :finish_on,  use_month_numbers: true,start_year: 1930, end_year: (Time.now.year), default: Date.new(Time.now.year) %>
-  </div>
-  <div class="form-group">
-    <%= f.submit "投稿する" %>
-  </div>
-<% end %>

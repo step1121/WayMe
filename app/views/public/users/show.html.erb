@@ -1,0 +1,10 @@
+<h2>投稿</h2>
+<table>
+<% @visions.each do |vision| %>
+<tr>
+  <td><%= link_to vision.title, vision_path(vision.id) %></td>
+  <td><%= vision.finish_status %><td>
+</tr>
+<% end %>
+</table>
+

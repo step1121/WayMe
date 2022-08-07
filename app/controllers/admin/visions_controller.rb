@@ -20,6 +20,6 @@ class Admin::VisionsController < ApplicationController
   private
 
   def vision_params
-    params.require(:vision).permit(:title, :body, :finish_on)
+    params.require(:vision).permit(:title, :genre_id, :body, :finish_on)
   end
 end

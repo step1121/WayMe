@@ -10,7 +10,7 @@
   
   <div class="field">
     <%= f.label :birthday, "生年月日" %><br />
-    <%= f.date_select :birthday, use_month_numbers: true,start_year: 1930, end_year: (Time.now.year), default: Date.new(Time.now.year) %>
+    <%= f.date_field :birthday, use_month_numbers: true,start_year: 1930, end_year: (Time.now.year), default: Date.new(Time.now.year) %>
   </div>
 
   <div class="field">

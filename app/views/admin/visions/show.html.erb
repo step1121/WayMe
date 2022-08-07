@@ -4,7 +4,7 @@
 <%= @vision.body %>
 <%= @vision.finish_on %>
 <%= @vision.finish_status %>
-<%= form_with model: @vision, admin_vision(@vision.id), method: :delete do |f| %>
+<%= form_with model: @vision, url: admin_vision_path(@vision.id), method: :delete do |f| %>
   <%= f.submit "削除"　%>
 <% end %>
 
