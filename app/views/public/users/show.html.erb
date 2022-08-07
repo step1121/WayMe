@@ -1,11 +1,35 @@
+<table class="table">
+  <tr><%= image_tag @user.get_profile_image, size: '100x100' %></tr>
+  <tr>
+    <th>name</th>
+    <th><%= @user.name %></th>
+  </tr>
+  <tr>
+    <th>introduction</th>
+    <th><%= @user.biography %></th>
+  </tr>
+  <tr>
+    <th>Birthday</th>
+    <th><%= @user.birthday %></th>
+  </tr>
+  <tr>
+    <th>follows</th>
+    <th><%= link_to @user.followings.count, user_followings_path(@user) %></th>
+  </tr>
+  <tr>
+    <th>followers</th>
+    <th><%= link_to @user.followers.count, user_followers_path(@user) %></th>
+  </tr>
+</table>
+
+<div class="row">
+  <% if @user == current_user %>
+    <%= link_to "設定", edit_user_path(@user), class: 'btn btn-outline-secondary btn-block'  %>
+  <% end %>
+
+</div>
+
 <h2>投稿</h2>
 <%= link_to "投稿", new_vision_path %>
-<table>
-<% @visions.each do |vision| %>
-<tr>
-  <td><%= link_to vision.title, vision_path(vision.id) %></td>
-  <td><%= vision.finish_status %><td>
-</tr>
-<% end %>
-</table>
+<%= render "public/visions/index", visions: @visions %>
 

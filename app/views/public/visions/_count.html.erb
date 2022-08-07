@@ -1,0 +1,5 @@
+<% if params[:genre_id] %>
+		<h2 class="section-ttl"><%= genre.name %>の商品一覧(全<%= visions.count %>件)</h2>
+<% else %>
+	<h2 class="section-ttl">一覧 (全<%= visions.count %>件)</h2>
+<% end %>

@@ -1,33 +1,34 @@
-<!--<nav class = "navbar navbar-expand-sm navbar-light">-->
-<!--  <div class="container">-->
-    <%#= link_to user_path, class: 'nav-link' do %>
-    <!--<span><i class="fab fa-digg"></i></span>-->
-    <%# end %>
-    <!--<div class="col ml-auto">-->
-    <!--  <div class="row text-right">-->
-    <!--    <div class="col ml-auto">-->
-    <!--      <button class="navbar-toggler bg-dark" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-expanded="false" aria-label="Toggle navigation   bg-right">-->
-    <!--        <span class="navbar-toggler-icon "></span>-->
-    <!--      </button>-->
-    <!--    </div>-->
-    <!--     <div class="collapse navbar-collapse" id="navbarNavDropdown" >-->
-          <%# if admin_signed_in? %>
-            <%#= render 'layouts/admin_header' %>
-          <%# else %>
-            <%#= render 'layouts/user_header' %>
-          <%# end %>
-      <!--  </div>-->
-      <!--</div>-->
-      <!--<div class="row pt-2 d-none d-sm-inline">-->
-        <!--<div class="col text-right">-->
-        <!--  <%#= form_with url: search_path, method: :get do |f| %>-->
-        <!--    <%#= f.text_field :content, :class => "search-box" %>-->
-        <!--    <%#= button_tag :type => "submit", :class => "btn btn-default btn-s-md" do %>-->
-        <!--      <i class="fa-solid fa-magnifying-glass"></i>-->
-        <!--    <%# end %>-->
-        <!--  <%# end %>-->
-        <!--</div>-->
-      <!--</div>-->
- <!--   </div>-->
- <!-- </div>-->
- <!--</nav>-->
+<nav class = "navbar navbar-expand-sm">
+  <a class="navbar-brand" herf="#"><span><i class="fab fa-airbnb"></i></span></a>
+  <div class="col ml-auto">
+    <div class="row text-right">
+      <div class="col ml-auto">
+        <button class="navbar-toggler bg-dark" type="button" date-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-expanded="false" aria-label="Toggle navigation   bg-right">
+          <span class="navbar-toggler-icon "></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown" >
+        <% if admin_signed_in? %>
+          <li><%= link_to '投稿一覧',  admin_visions_path %></li>
+          <li><%= link_to '会員一覧',  admin_users_path %></li>
+          <li><%= link_to 'ジャンル一覧',  admin_genres_path %></li>
+          <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
+        <% else user_signed_in? %>
+          <li><%= link_to 'マイページ', user_path(current_user.id) %></li>
+          <li><%= link_to '投稿一覧', visions_path %></li>
+          <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+        <% end %>
+      </div>
+    </div>
+     <div class="row pt-2 d-none d-sm-inline">
+      <div class="col text-right">
+        <%= form_with url: search_path, method: :get do |f| %>
+          <%= f.text_field :content, :class => "search-box" %>
+          <%= button_tag :type => "submit", :class => "btn btn-default btn-s-md" do %>
+            <i class="fa-solid fa-magnifying-glass"></i>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</nav>

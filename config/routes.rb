@@ -32,8 +32,8 @@ Rails.application.routes.draw do
     end
     resources :users, only: [:edit, :update, :show] do
       collection do
-        get 'users/out_check' => 'users#out_check'
-        patch 'users/out' => 'users#out'
+        get '/out_check' => 'users#out_check'
+        patch '/out' => 'users#out'
       end
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'

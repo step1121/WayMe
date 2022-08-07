@@ -1,24 +1,16 @@
-<div class="row py-3 mx-3 justify-content-center">
-  <% if params[:genre_id] %>
-			<h2 class="section-ttl"><%= genre.name %>の商品一覧(全<%= visions.count %>件)</h2>
-	<% else %>
-		<h2 class="section-ttl">一覧 (全<%= visions.count %>件)</h2>
+<% if visions.first %> <!--SQL1個分削減(?) -->
+	<% visions.each do |vision| %>
+		<p><%= vision.user.name %></p>
+		<p><%= vision.genre.name %></p>
+		<p><%= vision.title %></p>
+		<p>
+			<% if vision.finish_status? %>
+        <span>'Granted!!'</span>
+      <% else %>
+        <span>'On the Way'<span>
+      <% end %>
+		</p>
 	<% end %>
-
-	<% if visions.first %> <!--SQL1個分削減(?) -->
-		<% visions.each do |vision| %>
-			<p><%= vision.user.name %></p>
-			<p><%= vision.genre.name %></p>
-			<p><%= vision.title %></p>
-			<p>
-				<% if vision.finish_status? %>
-          <span>'On the Way'</span>
-        <% else %>
-          <span>'Granted!!'<span>
-        <% end %>
-			</p>
-		<% end %>
-	<% else %>
-		<h3>対応する投稿はありませんでした。</h3>
-	<% end %>
-</div>
+<% else %>
+	<h3>対応する投稿はありませんでした。</h3>
+<% end %>
