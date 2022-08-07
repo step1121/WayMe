@@ -1,25 +1,35 @@
 class Public::VisionsController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_vision, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_item, only: [:show, :edit, :update, :destroy]
   
   def new
     @vision = Vision.new
   end
   
   def create
-    @vision = Vision.new(vision_params)
     @vision.user_id = current_user.id
-    if @vision.save
-      redirect_to vision_path(@vision)
-    else
-      render :new
-    end
+    @vision.save ? (redirect_to vision_path(@vision)) : (render :new)
   end
   
   def index
-    @visions = Vision.page(params[:page])
-    @all_visions = Vision.all
+    @all_visions = Vision.where(genre_id: params[:genre_id])
+    if params[:genre_id].present?
+      @genre = Genre.find(params[:genre_id])
+      @visions = @all_visions.all
+    else
+      @visions = Vision.all
+    end
   end
+  
+   # @genres = Genre.only_active
+    # @all_visions = Vision.where(genre_id: params[:genre_id])
+    # if params[:genre_id]?
+    #   @visions = @all_visions.all
+    #   redirect_to viisons_path(params[:genre_id])
+    # else
+    #   @visions = Visions.all
+    #   redirect_to visions_path
+    # end
   
   def show
     @tasks = @vision.tasks
@@ -42,7 +52,7 @@ class Public::VisionsController < ApplicationController
   private
   
   def vision_params
-    params.require(:vision).permit(:title, :genre_id, :body, :finish_on)
+    params.require(:vision).permit(:title, :body, :finish_on, :genre_id, :finish_status)
   end
   
   def ensure_vision
