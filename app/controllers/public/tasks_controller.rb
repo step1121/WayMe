@@ -3,6 +3,7 @@ class Public::TasksController < ApplicationController
   before_action :set_task
   
   def edit
+    @task = Task.find(params[:id])
   end
   
   def create
@@ -27,14 +28,15 @@ class Public::TasksController < ApplicationController
   end
   
   def destroy
+    @task = Task.find(params[:id])
     @task.delete
-    redirect_to vision_path
+    redirect_to vision_path(@vision)
   end 
   
   private
   
   def task_params
-    params.require(:task).permit(:content, :completion_on,:vision_id)
+    params.require(:task).permit(:content, :completion_on, :vision_id)
   end
   
   def set_task

@@ -6,7 +6,7 @@
     <tr class="d-flex d-block flex-wrap justify-content-center ">
         <td class="new_item_table">
           <%= link_to vision.user.name, user_path(vision.user.id) %>
-          <%= link_to vision.title, visions_path(vision.id) %>
+          <%= link_to vision.title, vision_path(vision.id) %>
           <%= vision.finish_status %>
         </td>
     </tr>
