@@ -1,12 +1,13 @@
 class Public::VisionsController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_item, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_vision, only: [:show, :edit, :update, :destroy]
   
   def new
     @vision = Vision.new
   end
   
   def create
+    @vision = Vision.new(vision_params)
     @vision.user_id = current_user.id
     @vision.save ? (redirect_to vision_path(@vision)) : (render :new)
   end
@@ -32,7 +33,14 @@ class Public::VisionsController < ApplicationController
     # end
   
   def show
-    @tasks = @vision.tasks
+    @tasks = @vision.tasks.order(completion_on: "ASC")
+    @tasks_still = @tasks.where(completion_status: false)
+    @tasks_complete =@tasks.where(completion_status: true)
+    if @tasks.where(completion_status: true).count == @tasks.count
+      @vision.update(finish_status: true)
+    else
+      @vision.update(finish_status: false)
+    end
     @task = Task.new
   end
   

@@ -5,7 +5,7 @@
   </div>
   <div class="row mb-3">
     <%= f.label :completion_on, "完了予定日" %><br />
-    <%= f.date_field :completion_on, use_month_numbers: true, start_year: Time.now.year, end_year: (Time.now.year + 100), discard_day:true, selected: Date.today %>
+    <%= f.date_select :completion_on, use_month_numbers: true, start_year: Time.now.year, end_year: (Time.now.year + 100), selected: Date.today %>
   </div>
   <div class="row mb-3 justify-content-center">
     <%= f.submit submit, class: "btn btn-primary" %>

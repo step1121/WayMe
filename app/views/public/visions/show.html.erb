@@ -1,19 +1,8 @@
-<h2>投稿詳細</h2>
-
-<%= @vision.user.name %>
-<%= @vision.title %>
-<%= @vision.body %>
-<%= @vision.finish_on %>
-<%= @vision.finish_status %>
+<%= render "show", vision: @vision %>
 <%= link_to "編集", edit_vision_path(@vision.id) %>
+
+<%= render "public/tasks/index", tasks_still: @tasks_still, tasks_complete: @tasks_complete %>
 
 <div class="row col-8 d-flex justify-content-center">
   <%= render 'public/tasks/form', vision: @vision, task: @task, url: vision_tasks_path(@vision.id), submit: '追加' %>
 </div>
-
-<% @tasks.each do |task| %>
- <%= task.content %>
- <%= task.completion_status %>
- <%= task.completion_on %>
- <%= link_to "編集", edit_vision_task_path(task.vision.id, task.id) %>
-<% end %>

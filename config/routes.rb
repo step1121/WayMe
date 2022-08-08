@@ -1,13 +1,15 @@
 Rails.application.routes.draw do
   
+  #下記管理者側
   devise_for :admin, controllers: {
     sessions: 'admin/sessions'
   }
   
-
   namespace :admin do
+    
     resources :genres, only: [:index, :create, :update, :edit]
     resources :visions, only: [:index, :show, :destroy]
+    
     resources :users, only: [:index, :show, :update] do
       collection do
         patch 'users/out' => 'users#out'
@@ -15,6 +17,7 @@ Rails.application.routes.draw do
     end
   end
   
+  #ここから下記ユーザー側
   #トップページでログイン可能
   devise_scope :user do
       root :to => 'public/sessions#new'
@@ -26,10 +29,13 @@ Rails.application.routes.draw do
   }
   
   scope module: :public do
+    
     get '/search' => 'searchs#search'
     resources :visions do
-      resources :tasks, except: [:new, :show, :index]
+      resources :tasks, except: [:new, :show, :index] 
+      patch 'tasks/:id/complete' => 'tasks#complete', as: "complete"
     end
+    
     resources :users, only: [:edit, :update, :show] do
       collection do
         get '/out_check' => 'users#out_check'
@@ -39,6 +45,7 @@ Rails.application.routes.draw do
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers'  => 'relationships#followers', as: 'followers'
     end
+    
   end
   
   

@@ -8,7 +8,7 @@ class Public::UsersController < ApplicationController
 
   def show    
     @user = User.find(params[:id])
-    @visions = @user.visions
+    @visions = @user.visions.order(finish_on: "ASC")
   end
   
   def update
