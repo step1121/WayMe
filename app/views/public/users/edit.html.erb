@@ -3,7 +3,7 @@
 <%= form_with model: @user, url: user_path(@user), method: :patch  do |f| %>
   
   <div class="form-group">
-    <%= f.label :image %>
+    <%= f.label :profile_image %>
     <%= f.file_field :profile_image, class: 'form-control-file user_image', accept: 'image/*' %>
   </div>
 

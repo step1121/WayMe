@@ -1,29 +1,29 @@
-<div class="vition-list">
-	<table class="vision-each">
-		<% if visions.present? %> <!--SQL1個分削減(?) -->
+<div class="container-fluid">
+	<table class="mx-auto">
+		<% if visions.present? %>
 			<% visions.each do |vision| %>
-			<tr>
-				<td>
+			<div class="row col-10 shadow p-3 mb-3 bg-white rounded mx-auto">
+				<div class="col-2 d-flex justify-content-center">
 					<%= link_to user_path(vision.user) do %>
-					<p><%= image_tag vision.user.get_profile_image %></p>
+					<div class="profile_image"><%= image_tag vision.user.get_profile_image, size: "100x100", class: "rounded-circle" %></div>
+					<div class="text-center user-name"><%= vision.user.name %></div>
 					<% end %>
-			  </td>
-			  <td>
+			  </div>
+			  <div class="col">
 			  	<%= link_to vision_path(vision) do %>
-			  	<p><%= vision.user.name %></p>
-			  	<p><%= vision.genre.name %></p>
 			  	<p><%= vision.title %></p>
+			  	<p><%= vision.tasks.count %></p>
 			  	<% end %>
-			  </td>
-			  <td>
+			  </div>
+			  <div class="col">
 			  	<%= vision. finish_on %>
 					<% if vision.finish_status? %>
 				    <span>'Granted!!'</span>
 				  <% else %>
 				    <span>'On the Way'<span>
 				  <% end %>
-				</td>
-			</tr>
+				</div>
+			</div>
 			<% end %>
 		<% else %>
 			<h3>対応する投稿はありませんでした。</h3>

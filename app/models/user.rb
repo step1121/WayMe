@@ -18,8 +18,13 @@ class User < ApplicationRecord
   validates :biography, length: { maximum: 50 }
   
   def get_profile_image
-    (profile_image.attached?) ? profile_image : 'no_image.jpg'
+    if profile_image.attached?
+      profile_image
+    else
+      'no_image.jpeg'
+    end
   end
+
   
   def follow(user_id)
     relationships.create(followed_id: user_id)
