@@ -1,4 +1,5 @@
 <div class="user-list">
+<% if users.present? %>
   <% users.each do |user| %>
     <tr>
     	<td>
@@ -15,4 +16,7 @@
     	</td>
     </tr>
 	<% end %>
+	<% else %>
+			<h3>対応するユーザーはいませんでした。</h3>
+<% end %>
 </div>

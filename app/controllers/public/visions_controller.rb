@@ -22,16 +22,6 @@ class Public::VisionsController < ApplicationController
     end
   end
   
-   # @genres = Genre.only_active
-    # @all_visions = Vision.where(genre_id: params[:genre_id])
-    # if params[:genre_id]?
-    #   @visions = @all_visions.all
-    #   redirect_to viisons_path(params[:genre_id])
-    # else
-    #   @visions = Visions.all
-    #   redirect_to visions_path
-    # end
-  
   def show
     @tasks = @vision.tasks.order(completion_on: "ASC")
     @tasks_still = @tasks.where(completion_status: false)

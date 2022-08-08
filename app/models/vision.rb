@@ -8,12 +8,7 @@ class Vision < ApplicationRecord
   validates :body, length: { maximum: 100 }
   validates :finish_on, presence: true
   
-  # def are_all_tasks_completed?
-  #   (tasks.true.count == tasks.count) ? true : false
-  # end
-
-  
-  # def self.search(keyword)
-  #   where(["title like? OR body like?", "%#{keyword}%", "%#{keyword}%"])
-  # end
+  def self.search_for(content)
+    Vision.where(['title LIKE ? OR body LIKE ?', "%#{content}%","%#{content}%"])
+  end
 end

@@ -1,6 +1,6 @@
 <div class="vition-list">
 	<table class="vision-each">
-		<% if visions.first %> <!--SQL1個分削減(?) -->
+		<% if visions.present? %> <!--SQL1個分削減(?) -->
 			<% visions.each do |vision| %>
 			<tr>
 				<td>
