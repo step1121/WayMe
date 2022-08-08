@@ -25,6 +25,8 @@
 <div class="row">
   <% if @user == current_user %>
     <%= link_to "設定", edit_user_path(@user), class: 'btn btn-outline-secondary btn-block'  %>
+  <% else %>
+    <%= render "public/relationships/btn", user: @user %>
   <% end %>
 
 </div>
