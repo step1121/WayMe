@@ -1,15 +1,16 @@
-<div class="row py-3 mx-3 justify-content-center">
-  <h3>投稿一覧</h3>
-  <p class="col p-2">(全<%= all_visions.count %>件)</p>
-  <table class="table table-borderless">
-    <% visions.each do |vision| %>
-    <tr class="d-flex d-block flex-wrap justify-content-center ">
-        <td class="new_item_table">
-          <%= link_to vision.user.name, user_path(vision.user.id) %>
-          <%= link_to vision.title, vision_path(vision.id) %>
-          <%= vision.finish_status %>
-        </td>
-    </tr>
-    <% end %>
-  </table>
-</div>
+<% if visions.first %> <!--SQL1個分削減(?) -->
+	<% visions.each do |vision| %>
+		<p><%= vision.user.name %></p>
+		<p><%= vision.genre.name %></p>
+		<p><%= vision.title %></p>
+		<p>
+			<% if vision.finish_status? %>
+        <span>'Granted!!'</span>
+      <% else %>
+        <span>'On the Way'<span>
+      <% end %>
+		</p>
+	<% end %>
+<% else %>
+	<h3>対応する投稿はありませんでした。</h3>
+<% end %>

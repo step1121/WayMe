@@ -11,6 +11,7 @@ class Vision < ApplicationRecord
   def are_all_tasks_completed?
     (tasks.true.count == tasks.count) ? true : false
   end
+
   
   # def self.search(keyword)
   #   where(["title like? OR body like?", "%#{keyword}%", "%#{keyword}%"])
