@@ -1,0 +1,22 @@
+<h2><%= vision.title %></h2>
+
+<tr>
+  <td>
+  	<%= link_to user_path(vision.user) do %>
+    	<p><%= image_tag vision.user.get_profile_image %></p>
+  	<% end %>
+  </td>
+  <td>
+  	<%= link_to vision_path(vision) do %>
+    	<p><%= vision.user.name %></p>
+    	<p><%= vision.genre.name %></p>
+  	<% end %>
+  </td>
+  <td>
+  	<% if vision.finish_status %>
+      <span>'Granted!!'</span>
+    <% else %>
+      <span>'On the Way'<span>
+    <% end %>
+  </td>
+</tr>

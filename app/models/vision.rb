@@ -8,9 +8,9 @@ class Vision < ApplicationRecord
   validates :body, length: { maximum: 100 }
   validates :finish_on, presence: true
   
-  def are_all_tasks_completed?
-    (tasks.true.count == tasks.count) ? true : false
-  end
+  # def are_all_tasks_completed?
+  #   (tasks.true.count == tasks.count) ? true : false
+  # end
 
   
   # def self.search(keyword)

@@ -11,7 +11,7 @@
     <%= f.label "ジャンル", class: "form-select" %>
     <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %>
     <%= f.label :finish_on, "達成予定日" %><br />
-    <%= f.date_field :finish_on, use_month_numbers: true, start_year: Time.now.year, end_year: (Time.now.year + 100), discard_day:true, selected: Date.today %>
+    <%= f.date_select :finish_on, use_month_numbers: true, start_year: Time.now.year, end_year: (Time.now.year + 100), discard_day:true, selected: Date.today %>
   </div>
   
   <div class="row mb-3 justify-content-center">

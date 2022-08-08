@@ -1,16 +1,32 @@
-<% if visions.first %> <!--SQL1個分削減(?) -->
-	<% visions.each do |vision| %>
-		<p><%= vision.user.name %></p>
-		<p><%= vision.genre.name %></p>
-		<p><%= vision.title %></p>
-		<p>
-			<% if vision.finish_status? %>
-        <span>'Granted!!'</span>
-      <% else %>
-        <span>'On the Way'<span>
-      <% end %>
-		</p>
-	<% end %>
-<% else %>
-	<h3>対応する投稿はありませんでした。</h3>
-<% end %>
+<div class="vition-list">
+	<table class="vision-each">
+		<% if visions.first %> <!--SQL1個分削減(?) -->
+			<% visions.each do |vision| %>
+			<tr>
+				<td>
+					<%= link_to user_path(vision.user) do %>
+					<p><%= image_tag vision.user.get_profile_image %></p>
+					<% end %>
+			  </td>
+			  <td>
+			  	<%= link_to vision_path(vision) do %>
+			  	<p><%= vision.user.name %></p>
+			  	<p><%= vision.genre.name %></p>
+			  	<p><%= vision.title %></p>
+			  	<% end %>
+			  </td>
+			  <td>
+			  	<%= vision. finish_on %>
+					<% if vision.finish_status? %>
+				    <span>'Granted!!'</span>
+				  <% else %>
+				    <span>'On the Way'<span>
+				  <% end %>
+				</td>
+			</tr>
+			<% end %>
+		<% else %>
+			<h3>対応する投稿はありませんでした。</h3>
+		<% end %>
+	</div>
+</div>
