@@ -26,11 +26,6 @@ class Public::VisionsController < ApplicationController
     @tasks = @vision.tasks.order(completion_on: "ASC")
     @tasks_still = @tasks.where(completion_status: false)
     @tasks_complete =@tasks.where(completion_status: true)
-    if @tasks.where(completion_status: true).count == @tasks.count
-      @vision.update(finish_status: true)
-    else
-      @vision.update(finish_status: false)
-    end
     @task = Task.new
   end
   
@@ -43,7 +38,7 @@ class Public::VisionsController < ApplicationController
   
   def destroy
     @vision.delete
-    redirect_to user_path
+    redirect_to user_path(current_user)
   end
 
 

@@ -1,20 +1,25 @@
-<%= form_with model:vision, url: url do |f| %>
-  <div class="row mb-3">
-    <%= f.label :title, "Dream" %>
-    <%= f.text_field :title, class: 'form-control vision_title' %>
+<div class="container-fluid mb-5">
+  <div class="col-5 shadow p-5 rounded mx-auto bg-light ">
+    <%= form_with model:vision, url: url do |f| %>
+      <div class="row mx-auto mb-4 ">
+        <%= f.text_field :title, class: 'form-control vision_title', placeholder: "DREAM" %>
+      </div>
+      <div class="row mx-auto  mb-4">
+        <%= f.text_area :body, class: 'form-control vision_body', placeholder: "MOTIVE" %>
+      </div>
+      <div class="row mb-5">
+        <div class="col">
+          <i class="fas fa-tags fa-2x mr-3"></i>
+          <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %>
+          </div>
+        <div class="col ml-auto">
+          <i class="fas fa-calendar-alt fa-2x mr-3"></i>
+          <%= f.date_select :finish_on, use_month_numbers: true, start_year: Time.now.year, end_year: (Time.now.year + 100), discard_day: true , selected: day %>
+        </div>
+      </div>
+      <div class="row mb-3 justify-content-center">
+        <%= f.submit submit, class: "btn btn-outline-success btn-lg btn-block" %>
+      </div>
+    <% end %>
   </div>
-  <div class="row mb-3">
-    <%= f.label :body,"Detail" %>
-    <%= f.text_area :body, class: 'form-control vision_body' %>
-  </div>
-  <div class="row mb-3">
-    <%= f.label "ジャンル", class: "form-select" %>
-    <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %>
-    <%= f.label :finish_on, "達成予定日" %><br />
-    <%= f.date_select :finish_on, use_month_numbers: true, start_year: Time.now.year, end_year: (Time.now.year + 100), discard_day:true, selected: Date.today %>
-  </div>
-  
-  <div class="row mb-3 justify-content-center">
-    <%= f.submit submit, class: "btn btn-primary" %>
-  </div>
-<% end %>
+</div>

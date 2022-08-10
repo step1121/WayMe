@@ -1,6 +1,6 @@
 class Public::SearchsController < ApplicationController
 
-   def search
+  def search
     @model = params[:model]
 		@content = params[:content]
 		if @model == 'user'

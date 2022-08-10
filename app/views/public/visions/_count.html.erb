@@ -1,5 +1,25 @@
-<% if params[:genre_id] %>
-		<h2 class="section-ttl"><%= genre.name %>の商品一覧(全<%= visions.count %>件)</h2>
+<% if vision.finish_status? %>
+  <p>
+  	Finish Day<br>
+　  <%= vision.created_at.strftime('%Y-%m-%d') %>
+　</p>
+  <p><i class="fas fa-check-circle fa-2x"></i></p>
 <% else %>
-	<h2 class="section-ttl">一覧 (全<%= visions.count %>件)</h2>
+　<% if (vision.finish_on - Date.today) > 366 %>
+　  <p>
+    	BY<br>
+      <%= vision.finish_on.strftime('%Y-%m') %>
+    </p>
+  <% elsif  (vision.finish_on - Date.today) > -1 && (vision.finish_on - Date.today) < 365 %>
+    <p>
+       Time Limit<br>
+       <%=(vision.finish_on - Date.today).to_i %> DAYS
+    </p>
+  <% elsif (vision.finish_on - Date.today) < -1 %>
+    <p>
+       Passing<br>
+       <%= (vision.finish_on - Date.today).to_i * -1 %> DAYS
+    </p>
+  <% end %>
+  <p><i class="fas fa-shoe-prints fa-2x"></i></p>
 <% end %>

@@ -8,12 +8,15 @@
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
 
   <body>
-    <header>
-      <%= render "layouts/header" %>
-    </header>
+    <% unless current_page?(root_path) %>
+      <header>
+        <%= render "layouts/header" %>
+      </header>
+    <% end %>
     <main>
       <%= yield %>
     </main>

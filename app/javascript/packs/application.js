@@ -13,7 +13,8 @@ import "popper.js";
 import "bootstrap";
 import "../stylesheets/application" 
 import '@fortawesome/fontawesome-free/js/all'
-
+import "chartkick"
+import "chart.js"
 
 Rails.start()
 Turbolinks.start()
