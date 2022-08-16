@@ -10,7 +10,7 @@
       <div class="row mb-4">
         <div class="col-8 mr-auto d-flex my-auto">
           <h4 class="mr-3"><%= vision.title %></h4>
-          <%= link_to edit_vision_path(@vision.id) do%>
+          <%= link_to edit_vision_path(vision.id) do%>
             <i class="fas fa-edit"></i>
           <% end %>
         </div>
@@ -24,8 +24,15 @@
         <div class="col-3 d-flex align-items-center ">
           <%= render "public/visions/count", vision: vision %>
         </div>
-        <div class="col-5">  
-          <%= render 'public/tasks/form', vision: @vision, task: @task, url: vision_tasks_path(@vision.id),  obj: Date.today%>
+        <div class="col-5">
+          <% if vision.tasks.where(completion_status: true).count == vision.tasks.count %>
+            <%= form_with model:vision, url: vision_path(vision.id) do |f| %>
+              <%= f.file_field :production, class: 'display-none' %>
+              <%= f.submit "登録する" %>
+            <% end %>
+          <% else %>
+            <%= render 'public/tasks/form', vision: vision, task: @task, url: vision_tasks_path(vision.id),  obj: Date.today%>
+          <% end %>
         </div>
       </div>
     </div>

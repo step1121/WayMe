@@ -1,27 +1,36 @@
 <div class="container-fluid">
 		<% if visions.present? %>
 			<% visions.each do |vision| %>
-				<div class="row col-10 shadow p-3 mb-3 bg-white rounded">
-					<div class="col-2 d-flex justify-content-center my-auto ">
-						<%= link_to user_path(vision.user) do %>
+				<div class="row col-10 shadow p-2 mb-3 bg-white rounded mx-auto">
+					<div class="col-2 d-flex justify-content-center my-auto">
+						<%= link_to user_path(vision.user), class: "text-decoration-none" do %>
 						<div class="profile_image pb-3"><%= image_tag vision.user.get_profile_image, size: "100x100", class: "rounded-circle" %></div>
 						<div class="text-center text-dark"><%= vision.user.name %></div>
 						<% end %>
 				  </div>
-				  <div class="col-3 text-center my-auto">
-				  	<%= link_to vision_path(vision) do %>
-				  	<p><%= vision.title %></p>
-				  	<% end %>
-				  </div>
-				  <div class="col-4">
-				  	<canvas id="<%= vision.id %>"></canvas>
+				  <%= link_to vision_path(vision.id), class: "col-5 text-center my-auto text-dark text-decoration-none" do %>
+					  	<p class="p-2 bg-light text-dark rounded"><%= vision.title %></p>
+				  <% end %>
+				  <div class="col-3 d-flex justify-content-center my-auto">
+				  	<% if vision.tasks.count == 0 %>
+				  	  <p class="text-danger">No Task</p>
+				  	<% elsif vision.tasks.where(completion_status: true).count == vision.tasks.count %>
+				  	  <% if vision.production.present? %>
+				  	    <%= link_to rails_blob_path(vision.production, disposition: "attachment")do %>
+				  	      <%= "Download file" %>
+                <% end %>
+				  	  <% else %>
+				  	    <p>ファイルがありません</p>
+				  	  <% end %>
+						<% else %>
+					  	<canvas id="<%= vision.id %>"></canvas>
 							<script>
 							    var ctx = document.getElementById("<%= vision.id %>");
 							    var data = [<%= vision.tasks.where(completion_status: true).count %>, <%= vision.tasks.where(completion_status: false).count %>]
 							    var myLineChart = new Chart(ctx, {
 							      type: 'pie' ,
 							      data: {
-							        labels: ['DONE', 'YET'],
+							        labels: ['達成', '未達成'],
 							        datasets: [{
 							          data: data,
 							          backgroundColor: ['#48f', '#e03448'],
@@ -33,6 +42,7 @@
 							      }
 							    });
 							</script>
+						<% end %>
 				  </div>
 				  <div class="col text-center my-auto">
 				    <%= render "public/visions/count", vision: vision %>

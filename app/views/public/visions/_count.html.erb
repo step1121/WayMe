@@ -1,25 +1,31 @@
 <% if vision.finish_status? %>
-  <p>
-  	Finish Day<br>
-　  <%= vision.created_at.strftime('%Y-%m-%d') %>
-　</p>
-  <p><i class="fas fa-check-circle fa-2x"></i></p>
+  <p class="text-success">
+    <i class="fas fa-check-circle fa-2x"></i>
+  </p>
+  <p class="text-success">
+   <%= vision.created_at.strftime('%Y-%m-%d') %>
+  </p>
 <% else %>
 　<% if (vision.finish_on - Date.today) > 366 %>
-　  <p>
-    	BY<br>
+    <p class="text-info">
+      <i class="fas fa-shoe-prints fa-2x"></i>
+    </p>
+    <p class="text-info">
       <%= vision.finish_on.strftime('%Y-%m') %>
     </p>
-  <% elsif  (vision.finish_on - Date.today) > -1 && (vision.finish_on - Date.today) < 365 %>
-    <p>
-       Time Limit<br>
-       <%=(vision.finish_on - Date.today).to_i %> DAYS
+  <% elsif (vision.finish_on - Date.today) > -1 && (vision.finish_on - Date.today) < 365 %>
+    <p class="text-warning">
+      <i class="fas fa-shoe-prints fa-2x"></i>
+    </p>
+    <p class="text-warning">
+      <%=(vision.finish_on - Date.today).to_i %>DAYS
     </p>
   <% elsif (vision.finish_on - Date.today) < -1 %>
-    <p>
-       Passing<br>
-       <%= (vision.finish_on - Date.today).to_i * -1 %> DAYS
+    <p class="text-danger">
+      <i class="fas fa-exclamation-triangle fa-2x"></i>
+    </p>
+    <p class="text-danger">
+      -<%= (vision.finish_on - Date.today).to_i * -1 %> DAYS
     </p>
   <% end %>
-  <p><i class="fas fa-shoe-prints fa-2x"></i></p>
 <% end %>

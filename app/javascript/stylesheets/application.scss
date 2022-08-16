@@ -142,9 +142,17 @@
   color: #7172ac;
 }
 
-.new-form {
+.login-form {
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
+}
+
+.new-form {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+  transform: translateY(-50%);
 }
