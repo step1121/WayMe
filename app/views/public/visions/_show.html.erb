@@ -1,0 +1,33 @@
+<div class="container-fluid mx-auto">
+  <div class="row p-3 mb-3">
+    <div class="col-3 d-flex justify-content-center my-auto ">
+      <%= link_to user_path(vision.user) do %>
+        <div class="profile_image pb-3"><%= image_tag vision.user.get_profile_image, size: "150x150", class: "rounded-circle" %></div>
+        <div class="text-center text-dark"><%= vision.user.name %></div>
+      <% end %>
+    </div>
+    <div class="col-9">
+      <div class="row mb-4">
+        <div class="col-8 mr-auto d-flex my-auto">
+          <h4 class="mr-3"><%= vision.title %></h4>
+          <%= link_to edit_vision_path(@vision.id) do%>
+            <i class="fas fa-edit"></i>
+          <% end %>
+        </div>
+        <div class="col-4 p-2 text-center">
+          <i class="fas fa-tags fa-2x mr-3"></i>
+          <sapn><%= vision.genre.name %></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4"><%= vision.body %></div>
+        <div class="col-3 d-flex align-items-center ">
+          <%= render "public/visions/count", vision: vision %>
+        </div>
+        <div class="col-5">  
+          <%= render 'public/tasks/form', vision: @vision, task: @task, url: vision_tasks_path(@vision.id),  obj: Date.today%>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

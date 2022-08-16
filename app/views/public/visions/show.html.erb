@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="row col-10 shadow p-3 mb-3 bg-white rounded mx-auto bg-light">
+    <%= render "show", vision: @vision %>
+    
+    <%= render "public/tasks/index", tasks_still: @tasks_still, tasks_complete: @tasks_complete %>
+    
+    <div class="row col-8 d-flex justify-content-center">
+    </div>
+  </div>
+</div>

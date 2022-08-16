@@ -1,0 +1,22 @@
+<div class="user-list">
+<% if users.present? %>
+  <% users.each do |user| %>
+    <tr>
+    	<td>
+    		<%= link_to user_path(user.id) do %>
+    		　<%= image_tag user.get_profile_image %>
+    		<% end %>
+      </td>
+      <td><%= user.name %></td>
+      <td><%= user.visions.count %></td>
+      <td>フォロー数: <%= user.followings.count %></td>
+      <td>フォロワー数: <%= user.followers.count %></td>
+      <td>
+        <%= render "public/relationships/btn", user: user %>
+    	</td>
+    </tr>
+	<% end %>
+	<% else %>
+			<h3>対応するユーザーはいませんでした。</h3>
+<% end %>
+</div>

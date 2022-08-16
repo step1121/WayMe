@@ -1,0 +1,15 @@
+<h2>投稿詳細</h2>
+<%= @vision.user.name %>
+<%= @vision.title %>
+<%= @vision.body %>
+<%= @vision.finish_on %>
+<%= @vision.finish_status %>
+<%= form_with model: @vision, url: admin_vision_path(@vision.id), method: :delete do |f| %>
+  <%= f.submit "削除"　%>
+<% end %>
+
+
+<% @tasks.each do |task| %>
+ <%= task.content %>
+ <%= task.completion_status %>
+<% end %>

@@ -2,15 +2,23 @@
 <html>
   <head>
     <title>WayMe</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
 
   <body>
-    <%= yield %>
+    <% unless current_page?(root_path) %>
+      <header>
+        <%= render "layouts/header" %>
+      </header>
+    <% end %>
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>
