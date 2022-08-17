@@ -7,8 +7,8 @@ class Public::SearchsController < ApplicationController
 			@records = User.search_for(@content)
 		elsif @model == 'vision'
 			@records = Vision.search_for(@content)
-		elsif @model == 'task'
-			@records = Task.search_for(@content)
+		# elsif @model == 'task'
+		# 	@records = Task.search_for(@content)
 		end
   end
 end

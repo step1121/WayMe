@@ -1,7 +1,6 @@
 <%= render 'form', vision: @vision, url: vision_path(@vision.id), submit: 'Edit', day: @vision.finish_on %>
 <div class="container-fluid mb-5">
   <div class="col-5 mx-auto">
-    <%= link_to "Back", :back, class: "btn btn-outline-info btn-lg" %>
     <%= link_to 'Destroy',  vision_path(@vision.id), method: :delete, data: { confirm: '本当にこのビジョンを消しますか？' }, class: "btn btn-outline-danger btn-lg" %>
   </div>
 </div>

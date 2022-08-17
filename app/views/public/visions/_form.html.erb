@@ -10,7 +10,7 @@
       <div class="row mb-5">
         <div class="col">
           <i class="fas fa-tags fa-2x mr-3"></i>
-          <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %>
+          <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name, {:selected => vision.genre_id}) %>
           </div>
         <div class="col ml-auto">
           <i class="fas fa-calendar-alt fa-2x mr-3"></i>

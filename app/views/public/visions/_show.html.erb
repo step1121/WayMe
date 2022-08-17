@@ -21,14 +21,20 @@
       </div>
       <div class="row">
         <div class="col-4"><%= vision.body %></div>
-        <div class="col-3 d-flex align-items-center ">
+        <div class="col-3  text-center my-auto ">
           <%= render "public/visions/count", vision: vision %>
         </div>
-        <div class="col-5">
-          <% if vision.tasks.where(completion_status: true).count == vision.tasks.count %>
-            <%= form_with model:vision, url: vision_path(vision.id) do |f| %>
-              <%= f.file_field :production, class: 'display-none' %>
-              <%= f.submit "登録する" %>
+        <div class="col-5 text-center my-auto">
+          <% if vision.tasks.where(completion_status: true).count == vision.tasks.count && vision.tasks.count != 0 %>
+            <% if vision.production.present? %>
+              <%= link_to rails_blob_path(vision.production, disposition: "inline") do %>
+				  	    <%= "Download file" %>
+              <% end %>
+		  	    <% else %>
+		  	      <%= form_with model:vision, url: vision_path(vision) do |f| %>
+		  	        <%= f.file_field :production %>
+		  	        <%= f.submit "アップロード" %>
+              <% end %>
             <% end %>
           <% else %>
             <%= render 'public/tasks/form', vision: vision, task: @task, url: vision_tasks_path(vision.id),  obj: Date.today%>

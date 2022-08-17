@@ -9,8 +9,8 @@
             <% end %>
           </div>
           <div class="col-5 my-auto">
-            Time Limit <%=(t.completion_on - Date.today).to_i %>Days
-          </div> 
+            残 <%=(t.completion_on - Date.today).to_i %> 日
+          </div>
           <div class="col mx-auto">
             <%= form_with model:t, url: vision_complete_path(t.vision.id, t.id), method: :patch do |f| %>
               <%= f.submit "DONE", class: "btn btn-outline-light" %>
@@ -20,10 +20,10 @@
           <div class="col-4 my-auto">
             <%= link_to edit_vision_task_path(t.vision.id, t.id), {class: "text-light"} do%>
               <%= t.content %>
-            <% end %> 
+            <% end %>
           </div>
           <div class="col-5 my-auto">
-            <%= (t.completion_on - Date.today).to_i * -1 %>日期限が超過しています
+            <i class="fas fa-exclamation-triangle"></i> <%= (t.completion_on - Date.today).to_i * -1 %> 日超過 <i class="fas fa-exclamation-triangle"></i>
           </div>
           <div class="col mx-auto">
             <%= form_with model:t, url: vision_complete_path(t.vision.id, t.id), method: :patch do |f| %>
@@ -31,25 +31,25 @@
             <% end %>
           </div>
         <% end %>
-      </div> 
-    </div> 
+      </div>
+    </div>
   <% end %>
-  
+
   <% tasks_complete.each do |t| %>
   <div class="row  mx-auto ">
       <div class="row col-10 border p-3 mb-3 rounded mx-auto bg-primary text-white">
         <div class="col-4 my-auto">
           <%= t.content %>
         </div>
-        <div class="col-5 my-auto"> 
-          <%= t.created_at.strftime('%Y-%m-%d') %>
+        <div class="col-5 my-auto">
+          <%= t.updated_at.strftime('%Y-%m-%d') %>
         </div>
         <div class="col mx-auto">
           <%= form_with model:t, url: vision_complete_path(t.vision.id, t.id), method: :patch do |f| %>
               <%= f.submit "RETURN", class: "btn btn-outline-light" %>
           <% end %>
-        </div> 
-      </div> 
+        </div>
+      </div>
     </div>
   <% end %>
 </div>

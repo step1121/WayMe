@@ -1,19 +1,25 @@
-<h2>管理者ログイン</h2>
+<div class="fluid">
+  <%= image_tag "road-220058_1280.jpg", class: "fluid" %>
 
-<%= form_with model: @admin, url: admin_session_path, local: true do |f| %>
-  <div class="field">
-    <%= f.label :email, "メールアドレス" %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="new-form">
+    <div class="col-3 m-2 p-5 rounded mx-auto new-form-area">
+      <%= form_with model: @admin, url: admin_session_path, local: true do |f| %>
+        <h3 class="row justify-content-center mb-4 ">
+          管理者ログイン
+        </h3>
+
+        <div class="row justify-content-center mb-4 ">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", class: "rounded-pill form-control" %>
+        </div>
+
+        <div class="row justify-content-center mb-4 ">
+          <%= f.password_field :password, autocomplete: "current-password", placeholder: "PassWord", class: "rounded-pill form-control" %>
+        </div>
+
+        <div class="row mb-4 justify-content-center ">
+          <%= f.submit "ログイン", class: "btn btn-primary rounded-pill btn-block" %>
+        </div>
+      <% end %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password, "パスワード" %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "ログインする" %>
-  </div>
-<% end %>
-
-<%= render "admin/shared/links" %>
+</div>

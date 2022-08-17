@@ -12,8 +12,8 @@ class Task < ApplicationRecord
     end
   end
   
-  def self.search_for(content)
-    Task.where(['content LIKE ?', "%#{content}%"])
-  end
+  # def self.search_for(content)
+  #   Task.where(['content LIKE ?', "%#{content}%"])
+  # end
     
 end

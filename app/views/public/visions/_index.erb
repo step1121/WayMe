@@ -16,9 +16,9 @@
 				  	  <p class="text-danger">No Task</p>
 				  	<% elsif vision.tasks.where(completion_status: true).count == vision.tasks.count %>
 				  	  <% if vision.production.present? %>
-				  	    <%= link_to rails_blob_path(vision.production, disposition: "attachment")do %>
+				  	    <%= link_to rails_blob_path(vision.production, disposition: "inline") do %>
 				  	      <%= "Download file" %>
-                <% end %>
+                        <% end %>
 				  	  <% else %>
 				  	    <p>ファイルがありません</p>
 				  	  <% end %>

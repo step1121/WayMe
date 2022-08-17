@@ -1,7 +1,7 @@
 <% if user_signed_in? %>
-    <%= form_tag(search_path, method: :get) do %>
-      <%= text_field_tag 'content' %>
-      <%= select_tag 'model', options_for_select({ "User" => "user", "Vision" => "vision", "Task" => "task" }) %>
-      <%= submit_tag '検索' %>
+    <%= form_with url: search_path do |f|  %>
+      <%= f.text_field 'content' %>
+      <%= f.select 'model', options_for_select({ "User" => "user", "Vision" => "vision" }) %>
+      <button class="btn btn-secondary opacity-50 rounded ml-2"><i class="fas fa-search"></i></button>
     <% end %>
 <% end %>

@@ -1,37 +1,33 @@
 <div class="container-fluid mx-auto">
   <div class="row d-flex justify-content-center">
-    <div class="col-2 p-3 shadow bg-white rounded">
+    <div class="col-2 p-3 shadow bg-white rounded profile-tag">
       <div class="text-center">
       <%= image_tag @user.get_profile_image, size: "200x200", class: "rounded-circle" %>
       </div>
       <div class="row">
-        <div class="col-7">
+        <div class="col-6">
           <h4 class="mt-3"><%= @user.name %></h4>
           <h6><span><i class="fas fa-birthday-cake"></i></span><%= @user.birthday.strftime('%Y/%m/%d') %></h6>
         </div>
-        <div class="col-3 mt-3 ml-auto">
-          <%= link_to edit_user_path(@user), {class: 'text-dark'} do %>
-          <i class="fas fa-pen"></i>
+        <div class="col-6 mt-3">
+          <% if @user != current_user %>
+            <%= render "public/relationships/btn", user: @user %>
+          <% else %>
+            <%= link_to edit_user_path(@user), {class: 'text-dark'} do %>
+            <p class="text-right"><i class="fas fa-pen "></i></p>
+            <% end %>
           <% end %>
-        </div> 
+        </div>
       </div>
       <p><%= @user.biography %><p>
       <div class="row col-12 text-center p-0 m-0">
-           <p class="col-4 p-0 mx-auto">Posts</p>
-           <p class="col-4 p-0 mx-auto">Follow</p>
-           <p class="col-4 p-0 mx-auto">Followers</p>
-           <p class="col-4"><%= @user.visions.count %></p>
-           <p class="col-4"><%= link_to @user.followings.count, user_followings_path(@user) %></p>
-           <p class="col-4"><%= link_to @user.followers.count, user_followers_path(@user) %></p>
-           </tbody>
-           </table> 
+        <p class="col-4 p-0 mx-auto">Posts</p>
+        <p class="col-4 p-0 mx-auto">Follow</p>
+        <p class="col-4 p-0 mx-auto">Followers</p>
+        <p class="col-4"><%= @user.visions.count %></p>
+        <p class="col-4"><%= link_to @user.followings.count, user_followings_path(@user), class: "text-dark text-decoration-none" %></p>
+        <p class="col-4"><%= link_to @user.followers.count, user_followers_path(@user), class: "text-dark text-decoration-none" %></p>
       </div>
-    
-      <% if @user == current_user %>
-        
-      <% else %>
-        <%= render "public/relationships/btn", user: @user %>
-      <% end %>
     </div>
     <div class="col-7">
       <%= render "public/visions/index", visions: @visions %>

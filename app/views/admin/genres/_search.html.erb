@@ -2,7 +2,7 @@
   <%= form_with url: visions_path, method: :get do |f| %>
   <div class="row">
     <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), {include_blank: "ALL" }, { class: "col-2 text-center form-control" } %>
-    <button class="btn btn-secondary opacity-50 rounded ml-2"><i class="fas fa-search"></i></i></button>
+    <button class="btn btn-secondary opacity-50 rounded ml-2"><i class="fas fa-search"></i></button>
   </div>
   <% end %>
 </div>
