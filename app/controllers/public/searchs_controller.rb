@@ -1,14 +1,14 @@
 class Public::SearchsController < ApplicationController
 
-  def search
-    @model = params[:model]
+  def search_user
 		@content = params[:content]
-		if @model == 'user'
-			@records = User.search_for(@content)
-		elsif @model == 'vision'
-			@records = Vision.search_for(@content)
-		# elsif @model == 'task'
-		# 	@records = Task.search_for(@content)
-		end
+		@records = User.search_for(@content)
+  end
+
+  def search_vision
+		@content = params[:content]
+		@records = Vision.search_for(@content)
+		@visions_still = @records.where(finish_status: false)
+    @visions_finish = @records.where(finish_status: true)
   end
 end

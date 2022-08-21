@@ -1,46 +1,58 @@
-<div class="container-fluid mx-auto">
-  <div class="row p-3 mb-3">
-    <div class="col-3 d-flex justify-content-center my-auto ">
-      <%= link_to user_path(vision.user) do %>
-        <div class="profile_image pb-3"><%= image_tag vision.user.get_profile_image, size: "150x150", class: "rounded-circle" %></div>
-        <div class="text-center text-dark"><%= vision.user.name %></div>
-      <% end %>
-    </div>
-    <div class="col-9">
-      <div class="row mb-4">
-        <div class="col-8 mr-auto d-flex my-auto">
-          <h4 class="mr-3"><%= vision.title %></h4>
-          <%= link_to edit_vision_path(vision.id) do%>
-            <i class="fas fa-edit"></i>
-          <% end %>
-        </div>
-        <div class="col-4 p-2 text-center">
-          <i class="fas fa-tags fa-2x mr-3"></i>
-          <sapn><%= vision.genre.name %></span>
-        </div>
+<div class="row p-3 mb-3 mx-auto">
+
+  <div class="col-md-3 d-flex justify-content-center my-auto ">
+    <%= link_to user_path(vision.user) do %>
+      <div class="profile_image pb-3"><%= image_tag vision.user.get_profile_image, size: "150x150", class: "rounded-circle" %></div>
+      <div class="text-center text-dark"><%= vision.user.name %></div>
+    <% end %>
+  </div>
+
+  <div class="col-md-9">
+
+    <div class="row my-4 mt-md-0">
+      <div class="col-sm-8  text-left d-flex my-auto">
+        <h4 class="mr-3"><%= vision.title %></h4>
+        <%= link_to edit_vision_path(vision.id) do%>
+          <i class="fas fa-edit"></i>
+        <% end %>
       </div>
-      <div class="row">
-        <div class="col-4"><%= vision.body %></div>
-        <div class="col-3  text-center my-auto ">
-          <%= render "public/visions/count", vision: vision %>
-        </div>
-        <div class="col-5 text-center my-auto">
-          <% if vision.tasks.where(completion_status: true).count == vision.tasks.count && vision.tasks.count != 0 %>
-            <% if vision.production.present? %>
-              <%= link_to rails_blob_path(vision.production, disposition: "inline") do %>
-				  	    <%= "Download file" %>
-              <% end %>
-		  	    <% else %>
-		  	      <%= form_with model:vision, url: vision_path(vision) do |f| %>
-		  	        <%= f.file_field :production %>
-		  	        <%= f.submit "アップロード" %>
-              <% end %>
+
+      <div class="col-sm-4 p-2 text-right">
+        <i class="fas fa-tags sm-fa-2x mr-3"></i>
+        <sapn class="px-2">
+          <%= link_to vision.genre.name, visions_path(genre_id: vision.genre_id) %>
+        </span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 mb-md-0 mb-4"><%= vision.body %></div>
+
+      <div class="col-3  text-center my-auto px-0">
+        <%= render "public/visions/count", vision: vision %>
+      </div>
+
+      <div class="col-sm-5 col-8 text-center my-auto ml-auto">
+        <!--全タスク完了か否か分岐-->
+        <% if vision.tasks.where(completion_status: true).count == vision.tasks.count && vision.tasks.count != 0 %>
+          <!--全タスク完了時のファイルアップロード状況-->
+          <% if vision.production.present? %>
+            <%= link_to rails_blob_path(vision.production, disposition: "inline") do %>
+			  	    <%= "Download file" %>
             <% end %>
-          <% else %>
-            <%= render 'public/tasks/form', vision: vision, task: @task, url: vision_tasks_path(vision.id),  obj: Date.today%>
+
+	  	    <% else %>
+	  	      <%= form_with model:vision, url: vision_path(vision) do |f| %>
+	  	        <%= f.file_field :production %>
+	  	        <%= f.submit "アップロード" %>
+            <% end %>
           <% end %>
-        </div>
+
+        <% else %>
+          <%= render 'public/tasks/form', vision: vision, task: @task, method: :post, obj: Date.today%>
+        <% end %>
       </div>
     </div>
+
   </div>
 </div>

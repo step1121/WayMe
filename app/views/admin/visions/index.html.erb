@@ -1,6 +1,3 @@
-<h2>投稿一覧</h2>
-<% @visions.each do |vision| %>
-  <%= link_to vision.user.name, admin_user_path(vision.user.id) %>
-  <%= link_to vision.title, admin_vision_path(vision.id) %>
-  <%= vision.finish_status %>
-<% end %>
+<div class="container">
+  <%= render "index", visions: @visions %>
+</div>

@@ -26,6 +26,7 @@ class Public::SessionsController < Devise::SessionsController
   # end
 
   def after_sign_in_path_for(resource)
+    flash[:hello] = "Hi,#{ current_user.name }！"
     user_path(resource)
   end
 
@@ -37,7 +38,7 @@ class Public::SessionsController < Devise::SessionsController
     @user = User.find_by(name: params[:user][:name])
     if @user
       if @user.valid_password?(params[:user][:password]) && @user.user_status == true
-        flash[:danger] = 'お客様は退会済みです。申し訳ございませんが、別のメールアドレスをお使いください。'
+        flash[:checkout] = 'お客様は退会済みです。申し訳ございませんが、別のメールアドレスをお使いください。'
         redirect_to root_path
       end
     end

@@ -17,8 +17,13 @@ class Public::VisionsController < ApplicationController
     if params[:genre_id].present?
       @genre = Genre.find(params[:genre_id])
       @visions = @all_visions.all
+      @visions_still = @visions.where(finish_status: false)
+      @visions_finish = @visions.where(finish_status: true)
     else
-      @visions = Vision.all
+      users = User.joins(:visions).where(user_status: false)
+      @visions = Vision.where(user_id: users.ids)
+      @visions_still = @visions.where(finish_status: false)
+      @visions_finish = @visions.where(finish_status: true)
     end
   end
 
