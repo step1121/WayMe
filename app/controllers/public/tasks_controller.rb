@@ -25,8 +25,24 @@ class Public::TasksController < ApplicationController
   end
   
   def complete
+    @tasks = @vision.tasks.all
     @task = Task.find(params[:id])
-    @task.update(completion_status: true)
+    if @task.completion_status == false
+      @task.update(completion_status: true)
+    else
+      @task.update(completion_status: false)
+    end
+    if @tasks.where(completion_status: true).count != @tasks.count
+      @vision.update(finish_status: false)
+    else
+      @vision.update(finish_status: true)
+    end
+    #   if @tasks.where(completion_status: false).count != @tasks.count
+    #     @vision.update(finish_status: false)
+    #   else
+    #     @vision.update(finish_status: true)
+    #   end
+    # else
     redirect_to vision_path(@vision)
   end
   

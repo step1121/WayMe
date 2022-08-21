@@ -11,10 +11,42 @@ import "channels"
 import "jquery";
 import "popper.js";
 import "bootstrap";
-import "../stylesheets/application" 
+import "../stylesheets/application"
 import '@fortawesome/fontawesome-free/js/all'
-
+import "chartkick"
+import "chart.js"
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+window.addEventListener('load', () => {
+  const uploader = document.querySelector('.uploader');
+  uploader.addEventListener('change', (e) => {
+    const file = uploader.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      const image = reader.result;
+      document.querySelector('.avatar').setAttribute('src', image);
+    }
+  });
+});
+
+// タブの切り替え
+/*global $*/
+$(document).on('turbolinks:load', function() {
+  $(function() {
+    $('.tab').click(function(){
+      $('.tab-active').removeClass('tab-active');
+      $(this).addClass('tab-active');
+      $('.box-show').removeClass('box-show');
+      const index = $(this).index();
+      $('.tabbox').eq(index).addClass('box-show');
+    });
+  });
+});
+
+$(function(){
+  $('#hello').fadeOut(15000);
+});

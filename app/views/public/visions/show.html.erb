@@ -1,8 +1,6 @@
-<%= render "show", vision: @vision %>
-<%= link_to "編集", edit_vision_path(@vision.id) %>
-
-<%= render "public/tasks/index", tasks_still: @tasks_still, tasks_complete: @tasks_complete %>
-
-<div class="row col-8 d-flex justify-content-center">
-  <%= render 'public/tasks/form', vision: @vision, task: @task, url: vision_tasks_path(@vision.id), submit: '追加' %>
+<div class="container-lg">
+  <div class="col-lg-10 col-12 shadow p-3 bg-white rounded mx-auto">
+    <%= render "show", vision: @vision %>
+    <%= render "public/tasks/index", tasks_still: @tasks_still, tasks_complete: @tasks_complete %>
+  </div>
 </div>

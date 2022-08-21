@@ -1,13 +1,22 @@
 <%= form_with(model:[vision, task], local: false) do |f| %>
-   <div class="row mb-3">
-    <%= f.label :content, "タスク" %>
-    <%= f.text_field :content, class: 'form-control vision_title' %>
+  <div class="col mb-3 px-0">
+    <%= f.text_field :content, placeholder: "TASK", class: 'form-control task_content' %>
   </div>
-  <div class="row mb-3">
-    <%= f.label :completion_on, "完了予定日" %><br />
-    <%= f.date_select :completion_on, use_month_numbers: true, start_year: Time.now.year, end_year: (Time.now.year + 100), selected: Date.today %>
-  </div>
-  <div class="row mb-3 justify-content-center">
-    <%= f.submit submit, class: "btn btn-primary" %>
-  </div>
+
+  <% unless current_page?(vision_path)%>
+      <div class="row mb-3 col">
+        <%= f.date_select :completion_on, use_month_numbers: true, start_year: Time.now.year, end_year: vision.finish_on.year, selected: obj %>
+      </div>
+
+      <div class="row justify-content-between">
+        <%= link_to 'Destroy',  vision_task_path(vision_id: @vision.id, id: @task.id), method: :delete, data: { confirm: '本当にこのタスクを消しますか？' }, class: "btn btn-outline-danger btn-lg col-4" %>
+        <%= f.submit "Edit", class: "btn btn-outline-success btn-lg col-4" %>
+      </div>
+
+  <% else %>
+    <div class="col mb-3 px-0 d-flex justify-content-between">
+        <%= f.date_select :completion_on, use_month_numbers: true, start_year: Time.now.year, end_year: vision.finish_on.year, selected: obj %>
+        <button class="btn btn-primary btn-sm opacity-50 rounded-pill"><i class="fas fa-plus"></i></button>
+    </div>
+  <% end %>
 <% end %>

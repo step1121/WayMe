@@ -9,31 +9,33 @@
       <div class="col-lg-2 col-2 shadow border rounded tab tab-active">
         ALL
       </div>
-      
+
       <div class="col-lg-2 col-2 shadow border rounded tab">
         WAY
       </div>
-      
+
       <div class="col-lg-2 col-2 shadow border rounded tab">
         FINISH
       </div>
-      
+
       <div class="col my-auto">
         <%= render "admin/genres/search", genre: @genre %>
       </div>
     </div>
+
+    <div class="row col-sm-10 mx-auto mt-3">"<%= @content %>"を含むWAY</div>
+
     <!--タブで選択された要素部分-->
     <div class="row col-sm-10  mx-auto tabbox box-show ">
-      <%= render "index", visions: @visions %>
-    </div>
-    
-    <div class="row col-10 mx-auto tabbox">
-      <%= render "index", visions: @visions_still %>
-    </div>
-    
-    <div class="row col-10 mx-auto tabbox">
-      <%= render "index", visions: @visions_finish %>
+      <%= render 'public/visions/index', visions: @records %>
     </div>
 
+    <div class="row col-10 mx-auto tabbox">
+      <%= render "public/visions/index", visions: @visions_still %>
+    </div>
+
+    <div class="row col-10 mx-auto tabbox">
+      <%= render "public/visions/index", visions: @visions_finish %>
+    </div>
   </div>
 </div>

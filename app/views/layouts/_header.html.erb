@@ -1,4 +1,4 @@
-<nav class = "navbar navbar-expand-sm">
+<nav class ="navbar navbar-expand-sm bg-dark text-white mb-3">
   <a class="navbar-brand" herf="#"><span><i class="fab fa-airbnb"></i></span></a>
   <div class="col ml-auto">
     <div class="row text-right">
@@ -8,26 +8,19 @@
         </button>
       </div>
       <div class="collapse navbar-collapse" id="navbarNavDropdown" >
-        <% if admin_signed_in? %>
-          <li><%= link_to '投稿一覧',  admin_visions_path %></li>
-          <li><%= link_to '会員一覧',  admin_users_path %></li>
-          <li><%= link_to 'ジャンル一覧',  admin_genres_path %></li>
-          <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
-        <% elsif user_signed_in? %>
-          <li><%= link_to 'マイページ', user_path(current_user.id) %></li>
-          <li><%= link_to '投稿一覧', visions_path %></li>
-          <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-        <% end %>
-      </div>
-    </div>
-     <div class="row pt-2 d-none d-sm-inline">
-      <div class="col text-right">
-        <%= form_with url: search_path, method: :get do |f| %>
-          <%= f.text_field :content, :class => "search-box" %>
-          <%= button_tag :type => "submit", :class => "btn btn-default btn-s-md" do %>
-            <i class="fa-solid fa-magnifying-glass"></i>
+        <ul class="navbar-nav ml-auto">
+          <% if admin_signed_in? %>
+            <li class="mx-2"><%= link_to '投稿一覧',  admin_visions_path %></li>
+            <li class="mx-2"><%= link_to '会員一覧',  admin_users_path %></li>
+            <li class="mx-2"><%= link_to 'ジャンル一覧',  admin_genres_path %></li>
+            <li class="mx-2 sm-ml-2"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
+          <% elsif user_signed_in? %>
+            <li class="mx-2"><%= link_to 'マイページ', user_path(current_user.id) %></li>
+            <li class="mx-2"><%= link_to '投稿一覧', visions_path %></li>
+            <li class="mx-2"><%= link_to '投稿', new_vision_path %></li>
+            <li class="mx-2 sm-ml-2"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
           <% end %>
-        <% end %>
+        </ul>
       </div>
     </div>
   </div>

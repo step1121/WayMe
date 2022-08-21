@@ -1,13 +1,13 @@
 class Admin::VisionsController < ApplicationController
   before_action :authenticate_admin!
- 
+
   def index
-    @visions = Vision.page(params[:page])
+    @visions = Vision.all
   end
 
   def show
     @vision = Vision.find(params[:id])
-    @tasks = @vision.tasks
+    @tasks = @vision.tasks.order(completion_on: "ASC")
   end
 
   def destroy
@@ -20,6 +20,6 @@ class Admin::VisionsController < ApplicationController
   private
 
   def vision_params
-    params.require(:vision).permit(:title, :genre_id, :body, :finish_on)
+    params.require(:vision).permit(:title, :body, :finish_on, :genre_id, :finish_status, :production)
   end
 end

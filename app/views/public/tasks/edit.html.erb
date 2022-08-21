@@ -1,4 +1,5 @@
-<div class="row col-8 d-flex justify-content-center">
-  <%= render 'form', vision: @vision, task: @task, submit: '変更' %>
+<div class="container-fluid">
+  <div class="col-xl-4 col-sm-8 shadow p-5 mb-3 rounded mx-auto bg-light text-center">
+    <%= render 'form', vision: @vision, task: @task, obj: @task.completion_on %>
+  </div>
 </div>
-<%= link_to 'Destroy',  vision_task_path(vision_id: @vision.id, id: @task.id), method: :delete, data: { confirm: '本当にこのタスクを消しますか？' }, class: "btn btn-sm btn-danger" %>
