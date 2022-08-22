@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :reverse_of_relationships, source: :follower
 
-  scope :only_active, -> { where(user_status: false) }
+  scope :no_outcheck, -> { joins(:visions).where(user_status: false) }
 
   validates :name, uniqueness: true, length: { minimum: 2, maximum: 20 }, presence: true
   validates :biography, length: { maximum: 50 }

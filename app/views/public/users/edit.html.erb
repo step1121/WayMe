@@ -4,8 +4,8 @@
 
       <div class="row mb-4 ">
         <div class="col text-center">
-        <%= f.label :image do %>
-          <%= image_tag @user.get_profile_image, size: "200x200", class: "rounded-circle avatar" %>
+        <%= f.label :profile_image do %>
+          <%= image_tag(@user.get_profile_image, size: "200x200", class: "rounded-circle avatar") %>
           <%= f.file_field :profile_image, class: 'uploader',style: 'display:none' %>
         <% end %>
         </div>
@@ -32,7 +32,7 @@
       </div>
 
       <div class="row d-flex justify-content-between  mb-1">
-        <div class="col-4"><%=link_to "退会", out_check_users_path, class: 'btn btn-outline-danger rounded-pill btn-block' %></div>
+        <div class="col-4"><%= link_to "退会", out_check_users_path, class: 'btn btn-outline-danger rounded-pill btn-block' %></div>
         <div class="col-4"><%= f.submit "編集", class: "btn btn-outline-primary rounded-pill btn-block" %></div>
       </div>
 
