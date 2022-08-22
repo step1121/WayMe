@@ -1,40 +1,27 @@
-<% if admin_signed_in? %>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
-    <div class="container">
-      <a class="navbar-brand" href="/"><span><i class="fab fa-airbnb"></i></span></a>
-
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav text-right">
-          <li class="mx-2"><%= link_to '投稿一覧', admin_visions_path %></li>
-          <li class="mx-2"><%= link_to '会員一覧',  admin_users_path %></li>
-          <li class="mx-2"><%= link_to 'ジャンル一覧',  admin_genres_path %></li>
-          <li class="mx-2 sm-ml-2"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
+<nav class ="navbar navbar-expand-sm bg-dark text-white mb-3">
+  <a class="navbar-brand" herf="#"><span><i class="fab fa-airbnb"></i></span></a>
+  <div class="col ml-auto">
+    <div class="row text-right">
+      <div class="col ml-auto">
+        <button class="navbar-toggler bg-dark" type="button" date-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-expanded="false" aria-label="Toggle navigation   bg-right">
+          <span class="navbar-toggler-icon "></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown" >
+        <ul class="navbar-nav ml-auto">
+          <% if admin_signed_in? %>
+            <li class="mx-2"><%= link_to '投稿一覧',  admin_visions_path %></li>
+            <li class="mx-2"><%= link_to '会員一覧',  admin_users_path %></li>
+            <li class="mx-2"><%= link_to 'ジャンル一覧',  admin_genres_path %></li>
+            <li class="mx-2 sm-ml-2"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
+          <% elsif user_signed_in? %>
+            <li class="mx-2"><%= link_to 'マイページ', user_path(current_user.id) %></li>
+            <li class="mx-2"><%= link_to '投稿一覧', visions_path %></li>
+            <li class="mx-2"><%= link_to '投稿', new_vision_path %></li>
+            <li class="mx-2 sm-ml-2"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+          <% end %>
         </ul>
       </div>
     </div>
-  </nav>
-
-<% elsif user_signed_in? %>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
-    <div class="container d-flex justify-content-between">
-      <div class="col">
-        <%= link_to user_path(current_user.id) do %><%= image_tag current_user.get_profile_image, size: "50x50", class: "rounded-circle" %><% end %>
-      </div>
-
-      <div class="col text-center">
-        <%= link_to visions_path do %><i class="fab fa-airbnb"></i><% end %>
-      </div>
-
-      <div class="col text-right">
-        <span><%= link_to new_vision_path, class: 'text-light' do %><i class="fas fa-plus-circle fa-2x"></i><% end %></span>
-        <%= link_to destroy_user_session_path, method: :delete, class: 'text-light' do %><i class="fas fa-sign-out-alt fa-2x ml-2 ml-sm-4"></i><% end %>
-      </div>
-    </div>
   </div>
-<% end %>
-
-<!--<li class="mx-2 sm-ml-2"><%#= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>-->
+</nav>
