@@ -96,7 +96,8 @@ ActiveRecord::Schema.define(version: 2022_08_03_095457) do
     t.string "title", null: false
     t.text "body", null: false
     t.date "finish_on", null: false
-    t.boolean "finish_status", default: false
+    t.boolean "finish_status", default: false, null: false
+    t.integer "release_status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

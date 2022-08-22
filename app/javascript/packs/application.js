@@ -20,6 +20,7 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
+// ユーザー写真の編集動作
 window.addEventListener('load', () => {
   const uploader = document.querySelector('.uploader');
   uploader.addEventListener('change', (e) => {
