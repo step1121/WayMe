@@ -15,15 +15,19 @@ class Public::VisionsController < ApplicationController
   end
 
   def index
-    @all_visions = Vision.where(genre_id: params[:genre_id]).order(created_at: :desc)
+    # 退会済みユーザーの投稿を除去
+    users = User.no_outcheck
+    @vision_no_private = Vision.no_private
+    # @vision_no_private = Vision.where(user_id: current_user)
+    @visions = @vision_no_private.where(user_id: users.ids).order(created_at: :desc)
+    # || Vision.on_private && (current_user.followed_by? @vision.user) && (@vision.user.followed_by? current_user)
     # ジャンル検索時
+    @all_visions = @visions.where(genre_id: params[:genre_id]).order(created_at: :desc)
     if params[:genre_id].present?
       @genre = Genre.find(params[:genre_id])
       @visions = @all_visions.all
-    else
-      users = User.joins(:visions).where(user_status: false)
-      @visions = Vision.where(user_id: users.ids).order(created_at: :desc)
     end
+
     # 未達成VISION
     @visions_still = @visions.still
     # 達成VISION
@@ -55,7 +59,7 @@ class Public::VisionsController < ApplicationController
   private
 
   def vision_params
-    params.require(:vision).permit(:title, :body, :finish_on, :genre_id, :finish_status, :production)
+    params.require(:vision).permit(:title, :body, :finish_on, :genre_id, :finish_status, :production, :release_status)
   end
 
   def ensure_vision

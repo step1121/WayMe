@@ -60,7 +60,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
   # The path used after sign up.
   def after_sign_up_path_for(resource)
     flash[:hello] = "#{ current_user.name }さん、WayMeへようこそ！"
-    user_path(resource)
+    visions_path
   end
 
   def after_update_path_for(resource)

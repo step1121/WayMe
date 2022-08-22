@@ -28,3 +28,10 @@ ja:
       item: "商品情報"
       genre: "ジャンル"
       shipping_address: "配送先情報"
+
+
+    enums:
+      vison:
+        release_status:
+          public: "公開"
+          private: "非公開"
