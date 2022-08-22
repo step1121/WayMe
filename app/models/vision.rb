@@ -11,8 +11,8 @@ class Vision < ApplicationRecord
 
   scope :still, -> { where(finish_status: false) }
   scope :finish, -> { where(finish_status: true) }
-  scope :no_private, -> { where(release_status: true) }
-  scope :on_private, -> { where(release_status: false) }
+  scope :no_private, -> { where(release_status: false) }
+  scope :on_private, -> { where(release_status: true) }
 
 
 

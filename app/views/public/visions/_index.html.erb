@@ -24,11 +24,9 @@
 			    <%= link_to rails_blob_path(vision.production, disposition: "inline"), target: '_blank' do %>
 			      <%= "Download file" %>
 			    <% end %>
-
 			  <% else %>
 			    <p>ファイルがありません</p>
 			  <% end %>
-
 		    <% else %>
 		    <!--タスクの達成割合表-->
 			  <canvas id="<%= vision.id %>"></canvas>
@@ -59,7 +57,6 @@
 
 		</div>
   <% end %>
-
 <% else %>
   <h3>Nothing WAY</h3>
 <% end %>
