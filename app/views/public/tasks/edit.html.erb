@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <div class="col-xl-4 col-sm-8 shadow p-5 mb-3 rounded mx-auto bg-light text-center">
-    <%= render 'form', vision: @vision, task: @task, obj: @task.completion_on %>
+  <div class="col-xl-3 col-sm-6 shadow p-5 mb-3 rounded mx-auto bg-light text-center">
+    <%= render 'form', vision: @vision, task: @task, url: vision_task_path(vision_id: @task.vision_id, id: @task.id), obj: @task.completion_on %>
   </div>
 </div>

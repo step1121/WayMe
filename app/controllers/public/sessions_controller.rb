@@ -26,7 +26,7 @@ class Public::SessionsController < Devise::SessionsController
   # end
 
   def after_sign_in_path_for(resource)
-    flash[:hello] = "Hi,#{ current_user.name }！"
+    flash[:hello] = "#{ current_user.name}さん、ログインしました！"
     user_path(resource)
   end
 

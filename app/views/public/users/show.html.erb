@@ -1,6 +1,6 @@
 <div class="container-fluid mx-auto">
+  <h5 id="hello" class="col-6 mx-auto font-weight-bold bg-dark text-white text-center"><%= flash[:hello] %></h5>
   <div class="row d-flex justify-content-center">
-   <p id="hello" class="font-weight-bold"><%= flash[:hello] %></p>
     <div class="col-sm-10 col-lg-2 p-3 mb-3 shadow bg-white rounded profile-tag">
       <div class="text-center">
         <%= image_tag @user.get_profile_image, size: "200x200", class: "rounded-circle" %>
@@ -40,7 +40,9 @@
         <%= render "public/visions/index", visions: @visions %>
       <% else %>
         <h3>Nothing WAY</h3>
-        <%= link_to "GO NEW WAY", new_vision_path, class: "btn btn-outline-success" %>
+        <% if @user == current_user %>
+          <%= link_to "GO NEW WAY", new_vision_path, class: "btn btn-outline-success" %>
+        <% end %>
       <% end %>
     </div>
 

@@ -8,6 +8,10 @@ class Vision < ApplicationRecord
   validates :body, length: { maximum: 100 }
   validates :finish_on, presence: true
 
+  scope :still, -> { where(finish_status: false) }
+  scope :finish, -> { where(finish_status: true) }
+  
+
   def self.search_for(content)
     Vision.where(['title LIKE ? OR body LIKE ?', "%#{content}%","%#{content}%"])
   end

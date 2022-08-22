@@ -59,7 +59,7 @@ gem "net-pop"
 gem "net-imap"
 gem 'devise'
 gem 'kaminari','~> 1.2.1'
-gem 'rails-i18n', '~> 6.0.0'
+gem 'rails-i18n'
 gem 'enum_help'
 gem "chartkick"
 gem 'chartable'
