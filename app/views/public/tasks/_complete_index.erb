@@ -1,0 +1,22 @@
+<!--完了タスク一覧-->
+<% tasks.each do |t| %>
+  <div class="row col-sm-10 col-12 border p-3 mb-3 rounded mx-auto bg-primary text-white task-tag">
+
+    <div class="col-sm-5 col-12 my-auto font">
+      <%= t.content %>
+    </div>
+
+    <div class="col-5 col-sm-4 my-auto font">
+      <%= t.updated_at.strftime('%Y-%m-%d') %>
+    </div>
+
+    <div class="col text-right">
+      <% if t.vision.user == current_user %>
+        <%= form_with model:t, url: vision_complete_path(t.vision.id, t.id), method: :patch do |f| %>
+          <%= f.submit "RETURN", class: "btn btn-outline-light btn-sm font" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+

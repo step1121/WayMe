@@ -12,11 +12,7 @@ class Public::UsersController < ApplicationController
   end
 
   def update
-    if @user.update(user_params)
-      redirect_to user_path, notice: '会員情報の更新が完了しました。'
-    else
-      render :edit
-    end
+    @user.update(user_params) ? (redirect_to user_path) : (render :edit)
   end
 
   def out_check

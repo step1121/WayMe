@@ -1,0 +1,34 @@
+<!--未完了タスク一覧-->
+<% tasks.each do |t| %>
+  <div class="row col-sm-10 col-12 border p-3 mb-3 rounded mx-auto bg-danger text-white task-tag">
+
+    <div class="col-sm-5 col-12 my-auto font">
+      <% if t.vision.user == current_user %>
+        <%= link_to edit_vision_task_path(t.vision.id, t.id), {class: "text-light"} do %>
+          <%= t.content %>
+        <% end %>
+      <% else %>
+        <%= t.content %>
+      <% end %>
+    </div>
+
+    <div class="col-5 col-sm-4 my-auto font">
+      <!--タスク完了日時と現在の日時の差による分岐-->
+      <% if (t.completion_on - Date.today) > -1 %>
+        残 <%=(t.completion_on - Date.today).to_i %> 日
+
+      <% else %>
+        <i class="fas fa-exclamation-triangle"></i> <%= (t.completion_on - Date.today).to_i * -1 %> 日超過 <i class="fas fa-exclamation-triangle"></i>
+
+      <% end %>
+    </div>
+
+    <div class="col text-right">
+      <% if t.vision.user == current_user %>
+        <%= form_with model:t, url: vision_complete_path(t.vision.id, t.id), method: :patch do |f| %>
+          <%= f.submit "DONE", class: "btn btn-outline-light btn-sm font" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

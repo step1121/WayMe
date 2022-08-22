@@ -1,4 +1,4 @@
-<%= form_with(model:[vision, task], local: false) do |f| %>
+<%= form_with model:[vision, task], url: url do |f| %>
   <div class="col mb-3 px-0">
     <%= f.text_field :content, placeholder: "TASK", class: 'form-control task_content' %>
   </div>
@@ -9,8 +9,8 @@
       </div>
 
       <div class="row justify-content-between">
-        <%= link_to 'Destroy',  vision_task_path(vision_id: @vision.id, id: @task.id), method: :delete, data: { confirm: '本当にこのタスクを消しますか？' }, class: "btn btn-outline-danger btn-lg col-4" %>
-        <%= f.submit "Edit", class: "btn btn-outline-success btn-lg col-4" %>
+        <%= link_to 'Destroy',  vision_task_path(vision_id: @vision.id, id: @task.id), method: :delete, data: { confirm: '本当にこのタスクを消しますか？' }, class: "btn btn-outline-danger btn-lg col-4 font" %>
+        <%= f.submit "Edit", class: "btn btn-outline-success btn-lg col-4 font" %>
       </div>
 
   <% else %>

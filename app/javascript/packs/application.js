@@ -48,5 +48,5 @@ $(document).on('turbolinks:load', function() {
 });
 
 $(function(){
-  $('#hello').fadeOut(15000);
+  $('#hello').fadeOut(5000);
 });
