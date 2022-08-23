@@ -17,10 +17,14 @@ class Public::VisionsController < ApplicationController
   def index
     # 退会済みユーザーの投稿を除去
     users = User.no_outcheck
+    # 相互フォローのユーザーID,自分のID取得
+    users_follows = users.joins(:visions).where(id: current_user.followings.ids).where(id: current_user.followers.ids).or(users.where(id: current_user.id))
+    # 非公開Vision_ID取得
+    @vision_on_private = Vision.on_private
+    # 公開Vision_ID取得
     @vision_no_private = Vision.no_private
-    # @vision_no_private = Vision.where(user_id: current_user)
-    @visions = @vision_no_private.where(user_id: users.ids).order(created_at: :desc)
-    # || Vision.on_private && (current_user.followed_by? @vision.user) && (@vision.user.followed_by? current_user)
+    # 入会中　公開、相互フォローの非公開　Vision_IDの取得
+    @visions = @vision_on_private.where(user_id: users_follows.ids).or(@vision_no_private.where(user_id: users.ids)).order(created_at: :desc)
     # ジャンル検索時
     @all_visions = @visions.where(genre_id: params[:genre_id]).order(created_at: :desc)
     if params[:genre_id].present?
