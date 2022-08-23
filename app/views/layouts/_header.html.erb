@@ -21,7 +21,9 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
     <div class="container d-flex justify-content-between">
       <div class="col">
-        <%= link_to user_path(current_user.id) do %><%= image_tag current_user.get_profile_image, size: "50x50", class: "rounded-circle" %><% end %>
+        <%= link_to user_path(current_user.id) do %>
+          <%= image_tag current_user.get_profile_image, size: "50x50", class: "rounded-circle" %>
+        <% end %>
       </div>
 
       <div class="col text-center">
