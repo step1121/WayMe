@@ -1,14 +1,17 @@
 class Public::SearchsController < ApplicationController
+  before_action :authenticate_user!
 
-  def search
-    @model = params[:model]
+  # ユーザー検索
+  def search_user
 		@content = params[:content]
-		if @model == 'user'
-			@records = User.search_for(@content)
-		elsif @model == 'vision'
-			@records = Vision.search_for(@content)
-		elsif @model == 'task'
-			@records = Task.search_for(@content)
-		end
+		@records = User.search_for(@content)
+  end
+
+  # ビジョン検索
+  def search_vision
+		@content = params[:content]
+		@records = Vision.search_for(@content)
+		@visions_still = @records.still
+    @visions_finish = @records.finish
   end
 end

@@ -1,0 +1,29 @@
+<div class="container-fluid mx-auto">
+  <div class="col-lg-3 col-sm-5 col-9 mx-auto pb-4">
+    <%= render 'public/searchs/search' %>
+  </div>
+
+  <div class="row d-flex justify-content-center">
+    <!--タブ部分-->
+    <div class="col-sm-8 col-lg-5">
+      <div class="row tab-list list-unstyled">
+        <div class="col-3 shadow border rounded tab tab-active">
+          FOLLOWS
+        </div>
+        
+        <div class="col-3 shadow border rounded tab">
+          FOLLWERS
+        </div>
+      </div>
+      
+      <!--タブで選択された要素部分-->
+      <div class="tabbox box-show py-3 px-0">
+        <%= render 'follow', users: @users_followings %>
+      </div>
+      
+      <div class="tabbox">
+        <%= render 'follow', users: @users_followers %>
+      </div>
+    </div>
+  </div>
+</div>

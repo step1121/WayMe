@@ -1,10 +1,26 @@
-<div class="container">
-  <div class="row col-10 shadow p-3 mb-3 bg-white rounded mx-auto bg-light">
+<div class="container-lg">
+  <div class="col-lg-10 col-12 shadow p-3 bg-white rounded mx-auto">
     <%= render "show", vision: @vision %>
-    
-    <%= render "public/tasks/index", tasks_still: @tasks_still, tasks_complete: @tasks_complete %>
-    
-    <div class="row col-8 d-flex justify-content-center">
+
+    <div class="container-fluid">
+  <!--タブ部分-->
+    <div class="row col-sm-10 mx-auto tab-list list-unstyled px-sm-3 px-0 pb-3">
+      <div class="col-lg-2 col-3 shadow border rounded tab tab-active">
+        INcomplete
+      </div>
+
+      <div class="col-lg-2 col-3 shadow border rounded tab">
+        Conmplete
+      </div>
+    </div>
+
+    <!--タブで選択された要素部分-->
+    <div class="row col-sm-10 mx-auto tabbox box-show p-0">
+      <%= render "public/tasks/yet_index", tasks:  @tasks_yet %>
+    </div>
+
+    <div class="row col-sm-10 mx-auto tabbox p-0">
+      <%= render "public/tasks/complete_index", tasks: @tasks_complete %>
     </div>
   </div>
 </div>

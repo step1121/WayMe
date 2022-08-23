@@ -1,0 +1,17 @@
+<div class="container-fluid mx-auto">
+  <div class="col-lg-3 col-sm-5 col-9 mx-auto ">
+    <%= render 'public/searchs/search' %>
+  </div>
+
+  <div class="row col-sm-8 col-lg-5 mx-auto my-3">"<%= @content %>"を含むユーザー</div>
+
+  <div class="row d-flex justify-content-center">
+    <div class="col-sm-8 col-lg-5">
+      <%= render 'public/users/index', users: @records %>
+    </div>
+  </div>
+</div>
+
+
+
+

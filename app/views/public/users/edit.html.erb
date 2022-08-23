@@ -1,34 +1,41 @@
-<h2>編集</h2>
+<div class="container-fluid mb-5">
+  <div class="col-lg-5 shadow p-sm-5 p-3 rounded mx-auto bg-light ">
+    <%= form_with model: @user, url: user_path(@user), method: :patch  do |f| %>
 
-<%= form_with model: @user, url: user_path(@user), method: :patch  do |f| %>
-  
-  <div class="form-group">
-    <%= f.label :profile_image %>
-    <%= f.file_field :profile_image, class: 'form-control-file user_image', accept: 'image/*' %>
-  </div>
+      <div class="row mb-4 ">
+        <div class="col text-center">
+        <%= f.label :profile_image do %>
+          <%= image_tag(@user.get_profile_image, size: "200x200", class: "rounded-circle avatar") %>
+          <%= f.file_field :profile_image, class: 'uploader',style: 'display:none' %>
+        <% end %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= f.label :name, "名前" %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "neme" %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :biography %><br />
-    <%= f.text_field :biography, autofocus: true, autocomplete: "neme" %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :birthday, "生年月日" %><br />
-    <%= f.date_select :birthday, use_month_numbers: true,start_year: 1930, end_year: (Time.now.year), default: Date.new(Time.now.year) %>
-  </div>
+      <div class="row mb-4 ">
+        <div class="col-5"><%= f.label :name, "名前" %></div>
+        <div class="col-7"><%= f.text_field :name, autofocus: true, autocomplete: "neme", class: "form-control" %></div>
+      </div>
 
-  <div class="field">
-    <%= f.label :mail, "メールアドレス" %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+      <div class="row  mb-4">
+        <div class="col-5"><%= f.label :biography, "自己紹介" %></div>
+        <div class="col-7"><%= f.text_field :biography, autofocus: true, autocomplete: "neme", class: "form-control" %></div>
+      </div>
 
-  <div class="actions">
-    <%= f.submit "登録する" %>
+      <div class="row mb-4">
+        <div class="col-5"><%= f.label :birthday, "生年月日" %></div>
+        <div class="col-7"><%= f.date_field :birthday, use_month_numbers: true,start_year: 1930, end_year: (Time.now.year), default: Date.new(Time.now.year) %></div>
+      </div>
+
+      <div class="row mb-4">
+        <div class="col-5 bg-light rounded"><%= f.label :mail, "E-mail" %></div>
+        <div class="col-7"><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %></div>
+      </div>
+
+      <div class="row d-flex justify-content-between  mb-1">
+        <div class="col-4"><%= link_to "退会", out_check_users_path, class: 'btn btn-outline-danger rounded-pill btn-block' %></div>
+        <div class="col-4"><%= f.submit "編集", class: "btn btn-outline-primary rounded-pill btn-block" %></div>
+      </div>
+
+    <% end %>
   </div>
-<% end %>
-<%=link_to "退会", out_check_users_path, style: 'width:150px', class: 'btn btn-outline-primary' %>
+</div>
