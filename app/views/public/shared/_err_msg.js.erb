@@ -1,0 +1,7 @@
+let err_container = document.getElementById('err_container');
+err_container.style.display = 'block';
+
+let err_ul = document.getElementById('err_ul');
+<% @object.errors.full_messages.each do |msg| %>
+  err_ul.insertAdjacentHTML('afterbegin', '<li><%= msg %></li>');
+<% end %>

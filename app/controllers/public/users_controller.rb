@@ -8,7 +8,14 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @visions = @user.visions.order(finish_on: "ASC")
+    # 相互フォローしている又は自分
+    if @user == current_user || current_user.following?(@user) && @user.following?(current_user)
+      @visions = @user.visions.order(created_at: :desc)
+    else
+      # 公開Vision_ID取得
+      @vision_no_private = Vision.no_private
+      @visions = @vision_no_private.where(user_id: @user)
+    end
   end
 
   def update

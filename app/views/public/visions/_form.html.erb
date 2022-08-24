@@ -33,10 +33,12 @@
 
 
       <div class="row justify-content-between">
-        <% unless current_page?(new_vision_path)%>
-          <%= link_to 'Destroy',  vision_path(@vision.id), method: :delete, data: { confirm: '本当にこのビジョンを消しますか？' }, class: "btn btn-outline-danger btn-sm col-3" %>
-        <% else %>
+        <% if current_page?(new_vision_path)%>
           <div></div>
+        <% elsif current_page?(visions_path)%>
+          <div></div>
+        <% else %>
+          <%= link_to 'Destroy',  vision_path(id: @vision.id), method: :delete, data: { confirm: '本当にこのビジョンを消しますか？' }, class: "btn btn-outline-danger btn-sm col-3" %>
         <% end %>
         <%= f.submit submit, class: "btn btn-outline-success btn-sm col-3" %>
       </div>
