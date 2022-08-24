@@ -1,37 +1,26 @@
 ja:
   activerecord:
-    attributes:
-      customer:
-        last_name: 姓
-        first_name: 名
-        last_name_kana: 姓(カナ)
-        first_name_kana: 名(カナ)
-        zip_code: 郵便番号
-        phone_number: 電話番号
-        address: 住所
-        email: Eメール
-        password: パスワード
-        password_confirmation: 確認用パスワード
-      item:
-        name: 商品名
-        description: 商品説明
-        price: 価格
-      genre:
-        name: ジャンル名
-      shipping_address:
-        address: 住所
-        zip_code: 郵便番号
-        name: 宛名
-
     models:
-      customer: "顧客情報"
-      item: "商品情報"
-      genre: "ジャンル"
-      shipping_address: "配送先情報"
+      admin: 管理者
+      genre: カテゴリー
+      task: タスク
+      user: ユーザー
+      vision: ビジョン
 
-
-    enums:
-      vison:
-        release_status:
-          public: "公開"
-          private: "非公開"
+    attributes:
+      admin:
+        email: メールアドレス
+        password: パスワード
+      user:
+        name: ユーザーネーム
+        email: メールアドレス
+        password: パスワード
+        biography: 自己紹介
+        birthday: 誕生日
+      vision:
+        title: タイトル
+        body: 詳細
+        finish_on: 達成日
+      task:
+        content: 内容
+        completion_on: 完了日

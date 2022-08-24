@@ -34,11 +34,11 @@ Rails.application.routes.draw do
     get 'visions/search' => 'searchs#search_vision'
     resources :chats, only: [:show, :create]
     resources :visions do
-      resources :tasks, except: [:new, :show, :index]
+      resources :tasks, except: [:new, :show]
       patch 'tasks/:id/complete' => 'tasks#complete', as: "complete"
     end
 
-    resources :users, only: [:edit, :update, :show] do
+    resources :users, only: [:new, :edit, :update, :show, :index] do
       collection do
         get '/out_check' => 'users#out_check'
         patch '/out' => 'users#out'

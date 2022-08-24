@@ -25,6 +25,7 @@ ActiveStorage.start()
 $(window).on('turbolinks:load', function() {
   $(function() {
     const uploader = document.querySelector('.uploader');
+    if (!uploader){ return false;}
     uploader.addEventListener('change', (e) => {
       const file = uploader.files[0];
       const reader = new FileReader();

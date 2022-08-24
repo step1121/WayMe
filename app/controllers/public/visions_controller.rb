@@ -11,7 +11,7 @@ class Public::VisionsController < ApplicationController
   def create
     @vision = Vision.new(vision_params)
     @vision.user_id = current_user.id
-    @vision.save ? (redirect_to vision_path(@vision)) : (render :new)
+    @vision.save ? (redirect_to visions_path) : (render :new)
   end
 
   def index
@@ -20,22 +20,22 @@ class Public::VisionsController < ApplicationController
     # 相互フォローのユーザーID,自分のID取得
     users_follows = users.joins(:visions).where(id: current_user.followings.ids).where(id: current_user.followers.ids).or(users.where(id: current_user.id))
     # 非公開Vision_ID取得
-    @vision_on_private = Vision.on_private
+    vision_on_private = Vision.on_private
     # 公開Vision_ID取得
-    @vision_no_private = Vision.no_private
+    vision_no_private = Vision.no_private
     # 入会中　公開、相互フォローの非公開　Vision_IDの取得
-    @visions = @vision_on_private.where(user_id: users_follows.ids).or(@vision_no_private.where(user_id: users.ids)).order(created_at: :desc)
+    visions = vision_on_private.where(user_id: users_follows.ids).or(vision_no_private.where(user_id: users.ids)).order(created_at: :desc)
     # ジャンル検索時
-    @all_visions = @visions.where(genre_id: params[:genre_id]).order(created_at: :desc)
+    genre_visions = visions.where(genre_id: params[:genre_id]).order(created_at: :desc)
     if params[:genre_id].present?
       @genre = Genre.find(params[:genre_id])
-      @visions = @all_visions.all
+      visions = genre_visions.all
     end
 
     # 未達成VISION
-    @visions_still = @visions.still
+    @visions_still = visions.still
     # 達成VISION
-    @visions_finish = @visions.finish
+    @visions_finish = visions.finish
   end
 
   def show

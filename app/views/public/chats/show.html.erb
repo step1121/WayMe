@@ -2,7 +2,9 @@
   <div class="row mx-auto col-sm-6 col-lg-4 p-3 mb-3 shadow bg-white rounded">
 
     <div class="col-12 d-flex justify-content-between border-bottom pb-3 mb-3" id="room" data-room="<%= @room.id %>" data-user="<%= current_user.id %>">
-      <%= image_tag @user.get_profile_image, class: "rounded-circle profile-image" %>
+      <%= link_to user_path(@user) do %>
+        <%= image_tag @user.get_profile_image, class: "rounded-circle profile-image" %>
+      <% end %>
       <sapn class="username-font font-weight-bold my-auto"><%= @user.name %></span>
     </div>
 
@@ -24,7 +26,7 @@
       <!--<div class="errors">-->
       <!--  <%#= render "layouts/errors", obj: @chat %>-->
       <!--</div>-->
-    <div class="row mx-auto border-top pt-2 mt-2">
+    <div class="col-12 d-flex justify-content-center border-top pt-2 mt-2">
       <%= form_with model: @chat, data: {remote: true} do |f| %>
         <%= f.text_field :message, placeholder: "メッセージ", class: "rounded-pill" %>
         <%= f.hidden_field :room_id %>
