@@ -17,3 +17,10 @@ ja:
         password: パスワード
         biography: 自己紹介
         birthday: 誕生日
+      vision:
+        title: タイトル
+        body: 詳細
+        finish_on: 達成日
+      task:
+        content: 内容
+        completion_on: 完了日

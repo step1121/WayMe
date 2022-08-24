@@ -8,10 +8,6 @@
   <!--タブ部分-->
     <div class="row col-sm-10 mx-auto tab-list list-unstyled px-sm-3 px-0">
       <div class="col-lg-2 col-2 shadow border rounded tab tab-active">
-        ALL
-      </div>
-
-      <div class="col-lg-2 col-2 shadow border rounded tab">
         WAY
       </div>
 
@@ -25,10 +21,6 @@
     </div>
     <!--タブで選択された要素部分-->
     <div class="row col-sm-10  mx-auto tabbox box-show ">
-      <%= render "index", visions: @visions %>
-    </div>
-
-    <div class="row col-10 mx-auto tabbox">
       <%= render "index", visions: @visions_still %>
     </div>
 

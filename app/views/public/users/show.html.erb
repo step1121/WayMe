@@ -19,6 +19,10 @@
             <p class="text-right"><i class="fas fa-pen "></i></p>
             <% end %>
           <% end %>
+
+          <% if current_user != @user && current_user.following?(@user) && @user.following?(current_user) %>
+            <%= link_to "メッセージ",  chat_path(@user.id), class: "btn btn-outline-primary btn-sm rounded-pill follow-font" %>
+          <% end %>
         </div>
       </div>
 
@@ -35,8 +39,28 @@
     </div>
 
     <div class="col-lg-7 col-sm-10">
-      <% if @visions.present? %>
-        <%= render "public/visions/index", visions: @visions %>
+      <% if @user.visions.present? %>
+         <div class="container-fluid">
+        <!--タブ部分-->
+          <div class="row col-sm-10 mx-auto tab-list list-unstyled px-sm-3 px-0">
+            <div class="col-lg-2 col-2 shadow border rounded tab tab-active">
+              WAY
+            </div>
+
+            <div class="col-lg-2 col-2 shadow border rounded tab">
+              FINISH
+            </div>
+
+          <!--タブで選択された要素部分-->
+          <div class="row col-sm-12 mx-auto tabbox box-show ">
+            <%= render "public/visions/index", visions: @visions_still %>
+          </div>
+
+          <div class="row col-sm-12 mx-auto tabbox">
+            <%= render "public/visions/index", visions: @visions_finish %>
+          </div>
+        </div>
+
       <% else %>
         <h3>Nothing WAY</h3>
         <% if @user == current_user %>

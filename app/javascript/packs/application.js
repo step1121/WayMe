@@ -21,16 +21,20 @@ Turbolinks.start()
 ActiveStorage.start()
 
 // ユーザー写真の編集動作
-window.addEventListener('load', () => {
-  const uploader = document.querySelector('.uploader');
-  uploader.addEventListener('change', (e) => {
-    const file = uploader.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-      const image = reader.result;
-      document.querySelector('.avatar').setAttribute('src', image);
-    }
+
+$(window).on('turbolinks:load', function() {
+  $(function() {
+    const uploader = document.querySelector('.uploader');
+    if (!uploader){ return false;}
+    uploader.addEventListener('change', (e) => {
+      const file = uploader.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        const image = reader.result;
+        document.querySelector('.avatar').setAttribute('src', image);
+      }
+    });
   });
 });
 

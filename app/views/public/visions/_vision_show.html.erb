@@ -25,8 +25,8 @@
       </div>
     </div>
 
-    <div class="row d-flex justify-content-between mt-3">
-      <div class="col-md-4 mb-md-0 mb-4 font"><%= vision.body %></div>
+    <div class="row d-flex justify-content-between">
+      <div class="col-md-4 mb-md-0 mb-4"><%= vision.body %></div>
 
       <div class="col text-center my-auto px-0">
         <%= render "public/visions/count", vision: vision %>
@@ -50,7 +50,19 @@
             <% end %>
 
           <% else %>
-            <%= render 'public/tasks/form', vision: vision, task: @task, url: vision_tasks_path(vision.id), obj: Date.today%>
+            <%= form_with model:[vision, @task], url: vision_tasks_path(vision.id), method: :post  do |f| %>
+              <div class="col mb-3 px-0">
+                <%= f.text_field :content, placeholder: "TASK", class: 'form-control task_content' %>
+              </div>
+              <div class="text-left font"><%= render "public/shared/error_messages", resource: @task, attribute: :content %></div>
+
+              <div class="col mb-3 px-0 d-flex justify-content-between">
+                <%= f.date_select :completion_on, use_month_numbers: true, start_year: Time.now.year, end_year: vision.finish_on.year, selected: Date.today %>
+                <button class="btn btn-primary btn-sm opacity-50 rounded-pill"><i class="fas fa-plus"></i></button>
+              </div>
+              <div class="text-left font"><%= render "public/shared/error_messages", resource: @task, attribute: :completion_on %></div>
+
+            <% end %>
           <% end %>
         </div>
       <% end %>
