@@ -4,7 +4,7 @@ class Task < ApplicationRecord
   validates :content, length: { minimum: 2, maximum: 30 }, presence: true
   validates :completion_on, presence: true
   validate :date_before_start
-   validate :date_before_finish
+  validate :date_before_finish
 
   scope :yet, -> { where(completion_status: false) }
   scope :complete, -> { where(completion_status: true) }

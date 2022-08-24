@@ -7,10 +7,10 @@
     <% end %>
   </div>
 
-  <div class="col-md-9">
-    <div class="row mt-4 mt-md-0">
+  <div class="col-md-9 my-auto">
+    <div class="row my-4 mt-md-0">
 
-      <div class="col-9 text-left d-flex my-auto">
+      <div class="col-9 text-left d-flex">
         <h4 class="mr-3 vision-font"><%= vision.title %></h4>
         <% if vision.user == current_user %>
           <%= link_to edit_vision_path(vision.id) do%>
@@ -39,13 +39,20 @@
             <!--全タスク完了時のファイルアップロード状況-->
             <% if vision.production.present? %>
               <%= link_to rails_blob_path(vision.production, disposition: "inline") do %>
-  			  	    <%= "Download file" %>
+  			  	    <%= "Gole File" %>
               <% end %>
 
   	  	    <% else %>
   	  	      <%= form_with model:vision, url: vision_path(vision) do |f| %>
-  	  	        <%= f.file_field :production %>
-  	  	        <%= f.submit "アップロード" %>
+  	  	        <%= f.label :production do %>
+  	  	          <p class="font">
+  	  	            🎉達成おめでとうございます🎉<br>
+  	  	            ここをクリックして成果を<br>
+  	  	            アップしましょう！！👆
+  	  	            </p>
+    	  	        <%= f.file_field :production, class: "d-none" %>
+    	  	        <%= f.submit "アップロード" %>
+  	  	        <% end %>
               <% end %>
             <% end %>
 
