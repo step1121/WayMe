@@ -45,7 +45,4 @@ class User < ApplicationRecord
     User.where(['name LIKE ?', "%#{content}%"])
   end
 
-  def production_url
-    self[:production] ||= self.class.generate_unique_secure_token
-  end
 end

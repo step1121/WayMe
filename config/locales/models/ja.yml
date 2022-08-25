@@ -24,3 +24,5 @@ ja:
       task:
         content: 内容
         completion_on: 完了日
+      chat:
+        message: メッセージ
