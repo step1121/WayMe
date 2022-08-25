@@ -15,7 +15,7 @@
       <div class="row d-flex justify-content-between  mb-4">
         <div class="col-3 font-weight-bold font p-0"><%= f.label :birthday, "生年月日" %></div>
         <div class="col-6">
-          <%= f.date_select :birthday, use_month_numbers: true, start_year: (Time.now.year + 100), end_year: (Time.now.year - 10), default: Date.new(2000, 1, 1), class: "form-control" %>
+          <%= f.date_select :birthday, use_month_numbers: true, start_year: (Time.now.year - 100), end_year: (Time.now.year - 10), default: Date.new(2000, 1, 1), class: "form-control" %>
           <%= render "public/shared/error_messages", model: @user, attribute: :birthday %>
         </div>
       </div>

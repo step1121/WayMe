@@ -1,9 +1,9 @@
 class Public::UsersController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_current_user, except: [:show]
+  before_action :authenticate_user!, except: [:index]
+  before_action :set_current_user, except: [:show, :index]
 
   def index
-    redirect_to "users/sign_up"
+    redirect_to "/users/sign_up"
   end
 
   def edit

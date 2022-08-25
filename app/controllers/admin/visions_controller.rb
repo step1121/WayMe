@@ -19,7 +19,7 @@ class Admin::VisionsController < ApplicationController
   private
 
   def vision_params
-    params.require(:vision).permit(:title, :body, :finish_on, :genre_id, :finish_status, :production)
+    params.require(:vision)
   end
 
   def ensure_vision
