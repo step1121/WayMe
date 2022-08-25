@@ -3,12 +3,12 @@
     <%= form_with model: @vision, url: vision_path(@vision.id) do |f| %>
 
       <div class="row mx-auto mb-4 ">
-        <%= f.text_field :title, class: 'form-control vision_title', placeholder: "DREAM" %>
+        <%= f.text_field :title, class: 'form-control vision_title', placeholder: "タイトル" %>
         <%= render "public/shared/error_messages", resource: @vision, attribute: :title %>
       </div>
 
       <div class="row mx-auto  mb-4">
-        <%= f.text_area :body, class: 'form-control vision_body', placeholder: "MOTIVE" %>
+        <%= f.text_area :body, class: 'form-control vision_body', placeholder: "詳細" %>
         <%= render "public/shared/error_messages", resource: @vision, attribute: :body %>
       </div>
 
