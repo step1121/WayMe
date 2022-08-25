@@ -29,7 +29,7 @@
 
       <div class="row mb-4">
         <div class="col-5"><%= f.label :birthday, "生年月日" %></div>
-        <div class="col-7"><%= f.date_field :birthday, use_month_numbers: true, end_year: (Time.now.year), default: Date.new(Time.now.year) %></div>
+        <div class="col-7"><%= f.date_select :birthday, use_month_numbers: true, start_year: 1930, end_year: (Time.now.year - 10), default: @user.birthday, class: "form-control" %></div>
       </div>
 
       <div class="row mb-4">
