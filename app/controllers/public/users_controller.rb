@@ -13,16 +13,16 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     # 相互フォローしている又は自分
     if @user == current_user || current_user.following?(@user) && @user.following?(current_user)
-      @visions = @user.visions.order(created_at: :desc)
+      visions = @user.visions.order(created_at: :desc)
     else
       # 公開Vision_ID取得
       vision_no_private = Vision.no_private
-      @visions = vision_no_private.where(user_id: @user)
+      visions = vision_no_private.where(user_id: @user)
     end
         # 未達成VISION
-    @visions_still = @visions.still
+    @visions_still = visions.still
     # 達成VISION
-    @visions_finish = @visions.finish
+    @visions_finish = visions.finish
   end
 
   def update

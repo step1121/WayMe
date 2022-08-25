@@ -39,11 +39,11 @@ class Public::VisionsController < ApplicationController
   end
 
   def show
-    @tasks = @vision.tasks.order(completion_on: "ASC")
+    tasks = @vision.tasks.order(completion_on: "ASC")
     # 未完了TASK
-    @tasks_yet = @tasks.yet
+    @tasks_yet = tasks.yet
     # 完了TASK
-    @tasks_complete =@tasks.complete
+    @tasks_complete = tasks.complete
     @task = Task.new
   end
 

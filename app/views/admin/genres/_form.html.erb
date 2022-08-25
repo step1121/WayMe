@@ -1,0 +1,33 @@
+<div class="container-fluid mx-auto">
+  <div class="row d-flex justify-content-center">
+    <div class="col-3 p-3 shadow bg-white rounded genre-form h-50">
+      <%= form_with model: @genre, url: admin_genres_path, method: :post do |f| %>
+
+        <div class="col mx-auto mb-4 ">
+          <%= f.label :name, obj %>
+        </div>
+
+        <div class="col mx-auto  mb-4">
+          <%= f.text_field :name, class: 'form-control genre_name' ,placeholder: "Name" %>
+          <%= render "public/shared/error_messages", resource: @genre, attribute: :name %>
+        </div>
+
+        <div class="col mb-3 text-right">
+          <%= f.submit submit, class: "btn btn-outline-success " %>
+        </div>
+
+      <% end %>
+    </div>
+
+    <div class="col-3">
+      <% @genres.each do |genre| %>
+        <div class="col-8 shadow p-2 mb-3 bg-white rounded mx-auto">
+  		    <div class="d-flex justify-content-between my-auto">
+            <%= genre.name %>
+            <%= link_to "Edit", edit_admin_genre_path(genre.id), class: "btn btn-outline-danger" %>
+           </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

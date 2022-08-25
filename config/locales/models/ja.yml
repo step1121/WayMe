@@ -26,3 +26,5 @@ ja:
         completion_on: 完了日
       chat:
         message: メッセージ
+      genre:
+        name: カテゴリー名

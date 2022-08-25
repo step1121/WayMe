@@ -21,7 +21,6 @@ Turbolinks.start()
 ActiveStorage.start()
 
 // ユーザー写真の編集動作
-
 $(window).on('turbolinks:load', function() {
   $(function() {
     const uploader = document.querySelector('.uploader');
@@ -52,6 +51,7 @@ $(document).on('turbolinks:load', function() {
   });
 });
 
+// ログイン成功表示
 $(function(){
   $('#hello').fadeOut(5000);
 });

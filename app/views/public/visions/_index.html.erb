@@ -16,7 +16,7 @@
 		  <div class="col-sm-3 d-flex justify-content-center my-sm-auto my-3">
 		  	<!--タスクの数によって分岐-->
 		    <% if vision.tasks.count == 0 %>
-			  <p class="text-danger">No Task</p>
+			    <p class="text-danger">No Task</p>
 
 		    <% elsif vision.tasks.where(completion_status: true).count == vision.tasks.count %>
 		    <!--全てのタスクが完了後のファイルの有無-->
@@ -29,7 +29,7 @@
 			  <% end %>
 		    <% else %>
 		    <!--タスクの達成割合表-->
-			  <canvas id="<%= vision.id %>"></canvas>
+			    <canvas id="<%= vision.id %>"></canvas>
 		      <script>
 				    var ctx = document.getElementById("<%= vision.id %>");
 				    var data = [<%= vision.tasks.where(completion_status: true).count %>, <%= vision.tasks.where(completion_status: false).count %>]

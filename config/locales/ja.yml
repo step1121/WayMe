@@ -23,3 +23,16 @@ ja:
       long: "%Y年%m月%d日(%a) %H時%M分%S秒 %Z"
     am: "午前"
     pm: "午後"
+
+  activerecord:
+    models:
+      admin: 管理者
+      user: ユーザー
+
+  attributes:
+  admin:
+    email: メールアドレス
+    password: パスワード
+  user:
+    name: ユーザーネーム
+    email: メールアドレス
