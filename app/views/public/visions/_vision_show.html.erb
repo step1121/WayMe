@@ -11,7 +11,7 @@
     <div class="row my-4 mt-md-0">
 
       <div class="col-9 text-left d-flex">
-        <h4 class="mr-3 vision-font"><%= vision.title %></h4>
+        <h4 class="mr-3 "><%= vision.title %></h4>
         <% if vision.user == current_user %>
           <%= link_to edit_vision_path(vision.id) do%>
             <i class="fas fa-edit"></i>
@@ -26,10 +26,14 @@
     </div>
 
     <div class="row d-flex justify-content-between">
-      <div class="col-md-4 mb-md-0 mb-4"><%= vision.body %></div>
+      <div class="col-md-4 mb-md-0 mb-4 font"><%= vision.body %></div>
 
       <div class="col text-center my-auto px-0">
         <%= render "public/visions/count", vision: vision %>
+      </div>
+
+      <div class=<%= "fight-" + vision.id.to_s %>>
+        <%= render 'public/fights/btn', vision: vision %>
       </div>
 
       <% if vision.user == current_user %>

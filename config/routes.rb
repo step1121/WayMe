@@ -33,7 +33,9 @@ Rails.application.routes.draw do
     get 'users/search' => 'searchs#search_user'
     get 'visions/search' => 'searchs#search_vision'
     resources :chats, only: [:show, :create]
+
     resources :visions do
+      resource :fights, only: [:create, :destroy]
       resources :tasks, except: [:new, :show]
       patch 'tasks/:id/complete' => 'tasks#complete', as: "complete"
     end

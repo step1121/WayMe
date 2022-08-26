@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_many :user_rooms
   has_many :chats
   has_many :rooms, through: :user_rooms
+  has_many :fights
 
   scope :no_outcheck, -> { joins(:visions).where(user_status: false) }
 
@@ -43,6 +44,10 @@ class User < ApplicationRecord
 
   def self.search_for(content)
     User.where(['name LIKE ?', "%#{content}%"])
+  end
+
+  def fighted_by?(vision_id)
+    fights.where(vision_id: vision_id).exists?
   end
 
 end
