@@ -55,3 +55,18 @@ $(document).on('turbolinks:load', function() {
 $(function(){
   $('#hello').fadeOut(5000);
 });
+
+$(window).on('turbolinks:load', function() {
+  $(function() {
+    const bar = document.getElementById('bar');
+    if (!bar){ return false;}
+    bar.scrollTo(0, bar.scrollHeight);
+  });
+});
+
+$('.message').on('submit', function() {
+  $(function() {
+    const bar = document.getElementById('bar');
+    bar.scrollTo(0, bar.scrollHeight);
+  });
+});

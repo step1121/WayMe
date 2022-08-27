@@ -1,6 +1,6 @@
 <div class="container-fluid mb-5">
   <div class="col-lg-5 shadow p-sm-5 p-3 rounded mx-auto bg-light ">
-    <%= form_with model: @user, url: user_path(@user), method: :patch  do |f| %>
+    <%= form_with model: @user, url: user_path(@user), method: :patch ,class: "validationForm" do |f| %>
 
       <div class="row mb-4 ">
         <div class="col text-center">
@@ -14,7 +14,7 @@
       <div class="row mb-4 ">
         <div class="col-5"><%= f.label :name, "名前" %></div>
         <div class="col-7">
-          <%= f.text_field :name, autofocus: true, autocomplete: "neme", class: "form-control" %>
+          <%= f.text_field :name, autofocus: true, autocomplete: "neme", class: "form-control maxlength showCount minlength", dataMaxlength: "100" %>
           <%= render "public/shared/error_messages", resource: @user, attribute: :name %>
           </div>
       </div>
@@ -29,7 +29,7 @@
 
       <div class="row mb-4">
         <div class="col-5"><%= f.label :birthday, "生年月日" %></div>
-        <div class="col-7"><%= f.date_select :birthday, use_month_numbers: true, start_year: (Time.now.year + 100), end_year: (Time.now.year - 10), default: @user.birthday, class: "form-control" %></div>
+        <div class="col-7"><%= f.date_select :birthday, use_month_numbers: true, start_year: (Time.now.year - 100), end_year: (Time.now.year - 10), default: @user.birthday, class: "form-control" %></div>
       </div>
 
       <div class="row mb-4">
@@ -48,3 +48,53 @@
     <% end %>
   </div>
 </div>
+
+<script>
+const validationForm = document.querySelector('.validationForm');
+const minlengthElems =  document.querySelectorAll('.minlength');
+const maxlengthElems =  document.querySelectorAll('.maxlength');
+const showCountElems =  document.querySelectorAll('.showCount');
+
+//showCount クラスを指定された要素の集まり
+const showCountElems =  document.querySelectorAll('.showCount');
+
+//data-maxlength属性を指定した要素でshowCountクラスが指定されていれば入力文字数を表示する処理
+showCountElems.forEach( (elem) => {
+  //data-maxlength 属性の値を取得
+  const dataMaxlength = elem.getAttribute('data-maxlength');
+  //data-maxlength 属性の値が存在し、数値であれば
+  if(dataMaxlength && !isNaN(dataMaxlength)) {
+    //入力文字数を表示する p 要素を生成
+    const countElem = document.createElement('p');
+    //生成した p 要素にクラス countSpanWrapper を設定
+    countElem.classList.add('countSpanWrapper');
+    //p要素のコンテンツを作成（countSpanクラスを指定したspan要素にカウントを出力。初期値は0）
+    countElem.innerHTML = '<span class="countSpan">0</span>/' + parseInt(dataMaxlength);
+    //入力文字数を表示する p 要素を追加
+    elem.parentNode.appendChild(countElem);
+  }
+  //input イベントを設定
+  elem.addEventListener('input', (e) => {
+    //上記で作成したカウントを出力する span 要素を取得
+    const countSpan = elem.parentElement.querySelector('.countSpan');
+    if(countSpan) {
+      //入力されている文字数を取得（e.currentTarget は elem のこと）
+      const count = e.currentTarget.value.length;
+      //span 要素に文字数を出力
+      countSpan.textContent = count;
+      //文字数が dataMaxlength（data-maxlength 属性の値）より大きい場合
+      if(count > dataMaxlength) {
+        //文字を赤色に
+        countSpan.style.setProperty('color', 'red');
+        //span 要素に overMaxCount クラスを追加
+        countSpan.classList.add('overMaxCount');
+      }else{
+        //dataMaxlength 未満の場合は文字を元に戻し
+        countSpan.style.removeProperty('color');
+        //span 要素から overMaxCount クラスを削除
+        countSpan.classList.remove('overMaxCount');
+      }
+    }
+  });
+});
+</script>
