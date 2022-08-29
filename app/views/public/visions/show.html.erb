@@ -2,7 +2,7 @@
   <div class="col-lg-10 col-12 shadow p-3 bg-white rounded mx-auto">
     <%= render "public/visions/vision_show", vision: @vision %>
 
-    <div class="container-fluid">
+    <div class="container-fluid mt-5">
   <!--タブ部分-->
     <div class="row col-sm-10 mx-auto tab-list list-unstyled px-sm-3 px-0 pb-3 d-flex justify-content-between">
       <div>
@@ -14,11 +14,14 @@
         Conmplete
       </span>
       </div>
-      <div>
-        <spsn class=<%= "fight-" + @vision.id.to_s %>>
+
+      <div class="row mr-4">
+        <div class=<%= "fight-" + @vision.id.to_s %>>
           <%= render 'public/fights/btn', vision: @vision %>
-        </span>
-        <%= link_to 'a', vision_comments_path(@vision), vision: @vision %>
+        </div>
+        <div class="ml-3">
+          <%= render 'public/comments/btn', vision: @vision %>
+        </div>
       </div>
     </div>
 

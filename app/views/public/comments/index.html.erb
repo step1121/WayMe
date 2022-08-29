@@ -1,52 +1,48 @@
 <div class="container-lg">
-  <div class="col-lg-10 col-12 shadow p-3 bg-white rounded mx-auto">
-    <div class="row p-sm-3 mb-3 mx-auto p-0">
+  <div class="col-lg-7 col-12 shadow p-3 bg-white rounded mx-auto">
+    <div class="row p-sm-3 mx-auto p-0">
 
-      <div class="col-md-3 d-flex justify-content-center my-auto ">
+      <div class="col-3 d-flex justify-content-center my-auto ">
         <%= link_to user_path(@vision.user) do %>
-          <div class="profile_image pb-3"><%= image_tag @vision.user.get_profile_image, size: "125x125", class: "rounded-circle" %></div>
-          <div class="text-center text-dark"><%= @vision.user.name %></div>
+          <div class="profile_image pb-3"><%= image_tag @vision.user.get_profile_image, class: "rounded-circle profile-image" %></div>
+          <div class="text-center text-dark font-weight-bold username-font"><%= @vision.user.name %></div>
         <% end %>
       </div>
 
-      <div class="col-md-9 my-auto">
-        <div class="row my-4 mt-md-0">
+      <div class="col-9 my-auto">
+        <div class="row my-4">
 
           <div class="col-9 text-left d-flex">
-            <h4 class="mr-3 "><%= @vision.title %></h4>
+            <h4 class="mr-3 vision-font"><%= @vision.title %></h4>
             <% if @vision.user == current_user %>
               <%= link_to edit_vision_path(@vision) do%>
-                <i class="fas fa-edit"></i>
+                <i class="fas fa-edit edit-icon"></i>
               <% end %>
             <% end %>
           </div>
 
-          <div class="col-3 p-2 text-right">
-            <i class="fas fa-tags sm-fa-2x mr-1"></i>
-            <%= link_to @vision.genre.name, visions_path(genre_id: @vision.genre_id) %>
+          <div class="col-3 px-2 text-right">
+            <i class="fas fa-tags mr-1 genre-icon"></i>
+            <%= link_to @vision.genre.name, visions_path(genre_id: @vision.genre_id), class: "genre-font" %>
           </div>
         </div>
 
         <div class="row d-flex justify-content-between">
-          <div class="col-md-4 mb-md-0 mb-4 font"><%= @vision.body %></div>
+          <div class="col-7 font"><%= @vision.body %></div>
 
-          <div class="col text-center my-auto px-0">
+          <div>
             <%= render "public/visions/count", vision: @vision %>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="col-12 comments-index">
-      <% @comments.each do |comment| %>
-       <p><%= comment.comment %></p>
-      <% end %>
-      <!--<div class="errors">-->
-      <!--  <%#= render "public/shared/error_messages", resource: @comment, attribute: :comment %>-->
-      <!--</div>-->
+    <h4 class="comments-counter comment-count-font"><%= render "public/comments/counter", vision: @vision %></h4>
+    <div class="comment-area border-top border-bottom p-3 comment-bar">
+      <%= render "public/comments/comment_index", comments: @comments %>
     </div>
 
-    <div class="comment col-12">
+    <div class=" d-flex justify-content-center pt-2 mt-2">
       <%= render "public/comments/form", vision: @vision, comment: @comment %>
     </div>
 

@@ -28,3 +28,5 @@ ja:
         message: メッセージ
       genre:
         name: カテゴリー名
+      comment:
+        comment: コメント
