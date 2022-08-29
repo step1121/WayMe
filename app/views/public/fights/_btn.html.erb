@@ -1,0 +1,9 @@
+<% if current_user.fighted_by?(vision.id) %>
+  <sapn><%= link_to vision_fights_path(vision), method: :DELETE, remote: true do%><i class="fas fa-flag fa-lg" style="color: red;"></i><% end %></span>
+<% else %>
+  <sapn><%= link_to vision_fights_path(vision), method: :POST, remote: true do %><i class="far fa-flag fa-lg" style="color: black;"></i><% end %></span>
+<% end %>
+<% if vision.user == current_user %>
+  <%= vision.fights.count %>
+<% end %>
+

@@ -32,10 +32,6 @@
         <%= render "public/visions/count", vision: vision %>
       </div>
 
-      <div class=<%= "fight-" + vision.id.to_s %>>
-        <%= render 'public/fights/btn', vision: vision %>
-      </div>
-
       <% if vision.user == current_user %>
         <div class="col-sm-5 col-8 text-center my-auto ml-auto">
           <!--全タスク完了か否か分岐-->

@@ -1,0 +1,54 @@
+<div class="container-lg">
+  <div class="col-lg-10 col-12 shadow p-3 bg-white rounded mx-auto">
+    <div class="row p-sm-3 mb-3 mx-auto p-0">
+
+      <div class="col-md-3 d-flex justify-content-center my-auto ">
+        <%= link_to user_path(@vision.user) do %>
+          <div class="profile_image pb-3"><%= image_tag @vision.user.get_profile_image, size: "125x125", class: "rounded-circle" %></div>
+          <div class="text-center text-dark"><%= @vision.user.name %></div>
+        <% end %>
+      </div>
+
+      <div class="col-md-9 my-auto">
+        <div class="row my-4 mt-md-0">
+
+          <div class="col-9 text-left d-flex">
+            <h4 class="mr-3 "><%= @vision.title %></h4>
+            <% if @vision.user == current_user %>
+              <%= link_to edit_vision_path(@vision) do%>
+                <i class="fas fa-edit"></i>
+              <% end %>
+            <% end %>
+          </div>
+
+          <div class="col-3 p-2 text-right">
+            <i class="fas fa-tags sm-fa-2x mr-1"></i>
+            <%= link_to @vision.genre.name, visions_path(genre_id: @vision.genre_id) %>
+          </div>
+        </div>
+
+        <div class="row d-flex justify-content-between">
+          <div class="col-md-4 mb-md-0 mb-4 font"><%= @vision.body %></div>
+
+          <div class="col text-center my-auto px-0">
+            <%= render "public/visions/count", vision: @vision %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 comments-index">
+      <% @comments.each do |comment| %>
+       <p><%= comment.comment %></p>
+      <% end %>
+      <!--<div class="errors">-->
+      <!--  <%#= render "public/shared/error_messages", resource: @comment, attribute: :comment %>-->
+      <!--</div>-->
+    </div>
+
+    <div class="comment col-12">
+      <%= render "public/comments/form", vision: @vision, comment: @comment %>
+    </div>
+
+  </div>
+</div>
