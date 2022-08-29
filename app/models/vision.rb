@@ -10,7 +10,6 @@ class Vision < ApplicationRecord
   validates :body, length: { maximum: 100 }
   validates :finish_on, presence: true
   validate :dae_before_start
-  # validate :validate_production
 
   enum release_status: { public: 0, private: 1 }, _prefix: true
 
@@ -27,12 +26,5 @@ class Vision < ApplicationRecord
     return if finish_on.blank?
     errors.add(:finish_on, "は本日以降を選択してください") if finish_on < Date.today
   end
-
-  # def validate_production
-  #   if production.present?
-  #     production.purge
-  #     errors.add(:production, "ファイルを指定して下さい")
-  #   end
-  # end
 
 end
