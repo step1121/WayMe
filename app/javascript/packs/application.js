@@ -21,10 +21,10 @@ Turbolinks.start()
 ActiveStorage.start()
 
 // ユーザー写真の編集動作
-
 $(window).on('turbolinks:load', function() {
   $(function() {
     const uploader = document.querySelector('.uploader');
+    if (!uploader){ return false;}
     uploader.addEventListener('change', (e) => {
       const file = uploader.files[0];
       const reader = new FileReader();
@@ -51,6 +51,22 @@ $(document).on('turbolinks:load', function() {
   });
 });
 
+// ログイン成功表示
 $(function(){
   $('#hello').fadeOut(5000);
+});
+
+$(window).on('turbolinks:load', function() {
+  $(function() {
+    const bar = document.getElementById('bar');
+    if (!bar){ return false;}
+    bar.scrollTo(0, bar.scrollHeight);
+  });
+});
+
+$('.message').on('submit', function() {
+  $(function() {
+    const bar = document.getElementById('bar');
+    bar.scrollTo(0, bar.scrollHeight);
+  });
 });

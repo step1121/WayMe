@@ -1,8 +1,8 @@
 class Public::TasksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_vision
-  before_action :set_task, except: [:create]
-  before_action :baria_user, except: [:create]
+  before_action :set_task, except: [:create, :index]
+  before_action :baria_user, except: [:create, :index]
 
   def edit
   end
@@ -11,7 +11,20 @@ class Public::TasksController < ApplicationController
     vision = Vision.find(params[:vision_id])
     @task = Task.new(task_params)
     @task.vision_id = vision.id
-    @task.save ? (redirect_to vision_path(@vision)) : (render vision_path)
+    if @task.save
+      redirect_to vision_path(@vision)
+    else
+      @tasks = @vision.tasks.order(completion_on: "ASC")
+      # 未完了TASK
+      @tasks_yet = @tasks.yet
+      # 完了TASK
+      @tasks_complete =@tasks.complete
+      render 'public/visions/show'
+    end
+  end
+   
+  def index
+    redirect_to Vision.find(params[:vision_id])
   end
 
   def update

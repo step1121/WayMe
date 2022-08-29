@@ -1,7 +1,10 @@
 class Public::UsersController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_current_user, except: [:show]
+  before_action :authenticate_user!, except: [:index]
+  before_action :set_current_user, except: [:show, :index]
 
+  def index
+    redirect_to "/users/sign_up"
+  end
 
   def edit
   end
@@ -10,12 +13,16 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     # 相互フォローしている又は自分
     if @user == current_user || current_user.following?(@user) && @user.following?(current_user)
-      @visions = @user.visions.order(created_at: :desc)
+      visions = @user.visions.order(created_at: :desc)
     else
       # 公開Vision_ID取得
-      @vision_no_private = Vision.no_private
-      @visions = @vision_no_private.where(user_id: @user)
+      vision_no_private = Vision.no_private
+      visions = vision_no_private.where(user_id: @user)
     end
+        # 未達成VISION
+    @visions_still = visions.still
+    # 達成VISION
+    @visions_finish = visions.finish
   end
 
   def update
@@ -39,6 +46,6 @@ class Public::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :birthday, :biography, :profile_image, :user_status)
+    params.require(:user).permit(:name, :email, :birthday, :biography, :profile_image, :user_status)
   end
 end

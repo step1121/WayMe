@@ -7,11 +7,11 @@
     <% end %>
   </div>
 
-  <div class="col-md-9">
-    <div class="row mt-4 mt-md-0">
+  <div class="col-md-9 my-auto">
+    <div class="row my-4 mt-md-0">
 
-      <div class="col-9 text-left d-flex my-auto">
-        <h4 class="mr-3 vision-font"><%= vision.title %></h4>
+      <div class="col-9 text-left d-flex">
+        <h4 class="mr-3 "><%= vision.title %></h4>
         <% if vision.user == current_user %>
           <%= link_to edit_vision_path(vision.id) do%>
             <i class="fas fa-edit"></i>
@@ -25,11 +25,15 @@
       </div>
     </div>
 
-    <div class="row d-flex justify-content-between mt-3">
+    <div class="row d-flex justify-content-between">
       <div class="col-md-4 mb-md-0 mb-4 font"><%= vision.body %></div>
 
       <div class="col text-center my-auto px-0">
         <%= render "public/visions/count", vision: vision %>
+      </div>
+
+      <div class=<%= "fight-" + vision.id.to_s %>>
+        <%= render 'public/fights/btn', vision: vision %>
       </div>
 
       <% if vision.user == current_user %>
@@ -39,18 +43,37 @@
             <!--全タスク完了時のファイルアップロード状況-->
             <% if vision.production.present? %>
               <%= link_to rails_blob_path(vision.production, disposition: "inline") do %>
-  			  	    <%= "Download file" %>
+  			  	    <%= "Gole File" %>
               <% end %>
 
   	  	    <% else %>
   	  	      <%= form_with model:vision, url: vision_path(vision) do |f| %>
-  	  	        <%= f.file_field :production %>
-  	  	        <%= f.submit "アップロード" %>
+  	  	        <%= f.label :production do %>
+  	  	          <p class="font">
+  	  	            🎉達成おめでとうございます🎉<br>
+  	  	            ここをクリックして成果を<br>
+  	  	            アップしましょう！！👆
+  	  	            </p>
+    	  	        <%= f.file_field :production, class: "d-none" %>
+    	  	        <%= f.submit "アップロード" %>
+  	  	        <% end %>
               <% end %>
             <% end %>
 
           <% else %>
-            <%= render 'public/tasks/form', vision: vision, task: @task, url: vision_tasks_path(vision.id), obj: Date.today%>
+            <%= form_with model:[vision, @task], url: vision_tasks_path(vision.id), method: :post  do |f| %>
+              <div class="col mb-3 px-0">
+                <%= f.text_field :content, placeholder: "TASK", class: 'form-control task_content' %>
+              </div>
+              <div class="text-left font"><%= render "public/shared/error_messages", resource: @task, attribute: :content %></div>
+
+              <div class="col mb-3 px-0 d-flex justify-content-between">
+                <%= f.date_select :completion_on, use_month_numbers: true, start_year: Time.now.year, end_year: vision.finish_on.year, selected: Date.today %>
+                <button class="btn btn-primary btn-sm opacity-50 rounded-pill"><i class="fas fa-plus"></i></button>
+              </div>
+              <div class="text-left font"><%= render "public/shared/error_messages", resource: @task, attribute: :completion_on %></div>
+
+            <% end %>
           <% end %>
         </div>
       <% end %>

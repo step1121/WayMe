@@ -1,30 +1,38 @@
 <div class="container mx-auto my-auto">
   <div class="row col-10 shadow p-3 mb-3 bg-white rounded mx-auto bg-light">
+
     <div class="col-3 d-flex justify-content-center my-auto ">
       <%= link_to admin_user_path(@vision.user) do %>
         <div class="profile_image pb-3"><%= image_tag @vision.user.get_profile_image, size: "150x150", class: "rounded-circle" %></div>
         <div class="text-center text-dark"><%= @vision.user.name %></div>
       <% end %>
     </div>
+
     <div class="col-9">
+
       <div class="row mb-4">
         <div class="col-8 mr-auto d-flex my-auto">
           <h4 class="mr-3"><%= @vision.title %></h4>
         </div>
+
         <div class="col-4 p-2 text-center">
           <i class="fas fa-tags fa-2x mr-3"></i>
           <sapn><%= @vision.genre.name %></span>
         </div>
       </div>
+
       <div class="row">
         <div class="col-4"><%= @vision.body %></div>
+
         <div class="col-3  text-center my-auto ">
           <%= render "public/visions/count", vision: @vision %>
         </div>
+
         <div class="col-5 text-center my-auto">
           <%= link_to 'Destroy',  admin_vision_path(@vision.id), method: :delete, data: { confirm: '本当にこのビジョンを消しますか？' }, class: "btn btn-outline-danger btn-lg" %>
         </div>
       </div>
+
     </div>
   </div>
 </div>

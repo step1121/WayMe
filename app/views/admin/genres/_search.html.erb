@@ -1,8 +1,10 @@
 <div class="container-fluid">
   <%= form_with url: visions_path, method: :get do |f| %>
-  <div class="row d-flex justify-content-end">
-    <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), {include_blank: "カテゴリー" }, class: "col-lg-4 col-sm-8 col text-center btn-sm genre-font" %>
-    <button class="btn btn-outline-secondary rounded btn-sm ml-1"><i class="fas fa-search"></i></button>
-  </div>
+
+    <div class="row d-flex justify-content-end">
+      <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), {include_blank: "カテゴリー" }, class: "col-lg-4 col-sm-8 col text-center btn-sm genre-font" %>
+      <button class="btn btn-outline-secondary rounded btn-sm ml-1"><i class="fas fa-search"></i></button>
+    </div>
+
   <% end %>
 </div>
