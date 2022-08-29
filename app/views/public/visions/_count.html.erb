@@ -1,9 +1,8 @@
 <!--ビジョンの達成・未達成の分岐-->
 <% if vision.finish_status? %>
-  <p class="text-success">
-    <i class="fas fa-check-circle fa-2x"></i>
-  </p>
-  <p class="text-success">
+  <i class="fas fa-check-circle count-icon " style="color: green;"></i>
+
+  <p class="text-success count-font">
    <%= vision.updated_at.strftime('%Y-%m-%d') %>
   </p>
 
@@ -11,29 +10,21 @@
   <!--ビジョン未達成の場合の達成予定日と本日も差-->
   <!--達成予定日一年以上先の場合-->
 　<% if (vision.finish_on - Date.today) > 366 %>
-    <p class="text-info">
-      <i class="fas fa-shoe-prints fa-2x"></i>
-    </p>
-
+    <i class="fas fa-shoe-prints count-icon" style="color: #82cded;"></i>
     <p class="text-info">
       <%= vision.finish_on.strftime('%Y-%m') %>
     </p>
 
   <!--達成予定日一年以内の場合-->
   <% elsif (vision.finish_on - Date.today) > -1 && (vision.finish_on - Date.today) < 365 %>
-    <p class="text-warning">
-      <i class="fas fa-shoe-prints fa-2x"></i>
-    </p>
-
+    <i class="fas fa-shoe-prints count-icon" style="color: #ffe600;"></i>
     <p class="text-warning">
       後 <%=(vision.finish_on - Date.today).to_i %> 日
     </p>
 
   <!--達成予定日が過ぎている場合-->
   <% elsif (vision.finish_on - Date.today) < -1 %>
-    <p class="text-danger">
-      <i class="fas fa-exclamation-triangle fa-2x"></i>
-    </p>
+    <i class="fas fa-exclamation-triangle count-icon" style="color: red;"></i>
 
     <p class="text-danger">
       <%= (vision.finish_on - Date.today).to_i * -1 %> 日超過

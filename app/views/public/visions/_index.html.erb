@@ -9,8 +9,8 @@
       </div>
 
       <%= link_to vision_path(vision.id), class: "col-sm-5 col-8 text-center my-auto text-dark text-decoration-none" do %>
-      <div class="text-left text-dark"><%= vision.user.name %></div>
-        <p class="p-2 font m-0"><%= vision.title %></p>
+      <div class="text-left text-dark username-font"><%= vision.user.name %></div>
+        <p class="p-2 font m-0 vision-font"><%= vision.title %></p>
     <% end %>
 
     <div class="col-sm-3 d-flex justify-content-center my-sm-auto my-3">
@@ -51,15 +51,22 @@
       <% end %>
     </div>
 
-    <div class="col-sm text-center my-auto">
+    <div class="col-sm col-6 text-center my-auto">
       <%= render "public/visions/count", vision: vision %>
-    </div class="col-sm text-center my-auto">
-    
-    <% unless vision.finish_status? %>
-    <div class=<%= "fight-" + vision.id.to_s %>>
-      <%= render 'public/fights/btn', vision: vision %>
     </div>
-    <% end %>
+
+    <div class="d-flex flex-sm-column my-auto my-sm-0">
+      <% unless vision.finish_status? %>
+      <div class=<%= "fight-" + vision.id.to_s %>>
+        <%= render 'public/fights/btn', vision: vision %>
+      </div>
+      <% end %>
+
+      <div class="mt-auto ml-5 ml-sm-0">
+        <%= render 'public/comments/btn', vision: vision %>
+      </div>
+    </div>
+
 
   </div>
 <% end %>

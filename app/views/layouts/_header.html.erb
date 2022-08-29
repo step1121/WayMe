@@ -1,5 +1,5 @@
 <% if admin_signed_in? %>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+  <nav class="navbar navbar-expand-lg navbar-dark bg- mb-4">
     <div class="container">
       <a class="navbar-brand" href="/"><span><i class="fab fa-airbnb"></i></span></a>
 
@@ -27,7 +27,7 @@
       </div>
 
       <div class="col text-center">
-        <%= link_to visions_path do %><i class="fab fa-airbnb"></i><% end %>
+        <%= link_to visions_path do %><%= image_tag ("AdobeStock_325527702.jpg"), class: "header-logo" %><% end %>
       </div>
 
       <div class="col text-right">

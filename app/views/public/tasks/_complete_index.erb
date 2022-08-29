@@ -1,6 +1,6 @@
 <!--完了タスク一覧-->
 <% tasks.each do |t| %>
-  <div class="row col-sm-10 col-12 border p-3 mb-3 rounded mx-auto bg-primary text-white task-tag">
+  <div class="row col-sm-10 col-12 border p-3 mb-3 rounded mx-auto bg-light task-tag">
 
     <div class="col-sm-5 col-12 my-auto font">
       <%= t.content %>
@@ -13,7 +13,7 @@
     <div class="col text-right">
       <% if t.vision.user == current_user %>
         <%= form_with model:t, url: vision_complete_path(t.vision.id, t.id), method: :patch do |f| %>
-          <%= f.submit "RETURN", class: "btn btn-outline-light btn-sm font" %>
+          <%= f.submit "RETURN", class: "btn btn-outline-primary btn-sm font" %>
         <% end %>
       <% end %>
     </div>

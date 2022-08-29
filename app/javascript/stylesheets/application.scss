@@ -88,6 +88,11 @@
  object-fit: cover;
 }
 
+.header-logo{
+  height: 7vh;
+  width: auto;
+}
+
 .profile-tag{
   height: 450px;
 }
@@ -101,20 +106,38 @@
   width: 100px;
 }
 
+.comment-profile-image{
+  height: 50px;
+  width: 50px;
+}
+
 .font{
   font-size:min(3.0vw,16px);
 }
 
 .genre-font{
-  font-size:min(2.5vw,16px);
+  font-size:min(2.5vw,18px);
 }
 
 .vision-font{
-  font-size:min(3.5vw,25px);
+  font-size:min(5vw,30px);
 }
 
 .username-font{
-  font-size:min(5.5vw,35px);
+  font-size:min(4.5vw,25px);
+}
+
+.count-font {
+  font-size:min(3.0vw,20px);
+  text-aline: center;
+}
+
+.comment-count-font {
+  font-size:min(4.0vw,30px);
+}
+
+.data-font {
+  font-size:min(2.5vw,18px);
 }
 
 .right-dm-font{
@@ -140,13 +163,26 @@
 
 .dm-bar {
    overflow-y: scroll;
-   height: 60vh;
+   height: 52vh;
    margin: 0 auto;
    display: flex;
    flex-flow: column;
 }
 
 .dm-bar::-webkit-scrollbar {
+  display:none;
+}
+
+.comment-bar {
+   overflow-y: scroll;
+   height: auto;
+   max-height: 52vh;
+   margin: 0 auto;
+   display: flex;
+   flex-flow: column;
+}
+
+.comment-bar::-webkit-scrollbar {
   display:none;
 }
 
@@ -181,6 +217,22 @@
   color: #ff0000;
 }
 
+.count-icon{
+  font-size:min(6vw,40px);
+  margin: 0 auto;
+}
+
+.genre-icon{
+  font-size:min(3vw,20px);
+}
+
+.edit-icon{
+  font-size:min(2.5vw,18px);
+}
+
+#canvas {
+  width: 600px;
+}
 
 @media screen and (max-width:768px) {
   .top-greeting{
@@ -228,11 +280,13 @@
 
 @media screen and (max-width:576px) {
   .profile-image{
-    height: 50px;
-    width: 50px;
+    height: 75px;
+    width: 75px;
   }
 
-  .dm-bar {
-    height: 380px;
-  }
+  .comment-profile-image{
+  height: 30px;
+  width: 30px;
+ }
+
 }
