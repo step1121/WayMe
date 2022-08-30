@@ -24,8 +24,9 @@
 
     <div class="col-12 d-flex justify-content-center border-top pt-2 mt-2">
       <%= form_with model: @chat, data: {remote: true} do |f| %>
-        <%= f.text_field :message, placeholder: "メッセージ", class: "rounded-pill" %>
+        <%= f.text_field :message, placeholder: "メッセージ", class: "rounded" %>
         <%= f.hidden_field :room_id %>
+        <%= f.submit "送信", class: "btn btn-sm btn-outline-success rounded" , id: "add-btn" %>
         <div class="errors">
           <%= render "public/shared/error_messages", resource: @chat, attribute: :message %>
         </div>

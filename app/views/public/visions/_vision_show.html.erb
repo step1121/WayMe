@@ -26,14 +26,14 @@
     </div>
 
     <div class="row d-flex justify-content-between">
-      <div class="col-sm-6 col-7 font"><%= @vision.body %></div>
+      <div class="col-sm-5 col-7 font"><%= @vision.body %></div>
 
       <div class="col text-center">
         <%= render "public/visions/count", vision: @vision %>
       </div>
 
     <% if vision.user == current_user %>
-      <div class="col text-center my-auto ml-auto">
+      <div class="col-sm-5 text-center my-auto ml-auto">
         <!--全タスク完了か否か分岐-->
         <% if vision.tasks.where(completion_status: true).count == vision.tasks.count && vision.tasks.count != 0 %>
           <!--全タスク完了時のファイルアップロード状況-->
@@ -50,8 +50,8 @@
 	  	            ここをクリックして成果を<br>
 	  	            アップしましょう！！👆
 	  	            </p>
-  	  	        <%= f.file_field :production, class: "d-none" %>
-  	  	        <%= f.submit "アップロード" %>
+  	  	        <%= f.file_field :production, class: "d-none", id: "input-file" %>
+  	  	        <%= f.submit "アップロード", id: "button", disabled: "true" %>
 	  	        <% end %>
             <% end %>
           <% end %>
