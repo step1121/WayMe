@@ -8,7 +8,7 @@
         <% end %>
       </div>
 
-      <%= link_to vision_path(vision.id), class: "col-sm-5 col-8 text-center my-auto text-dark text-decoration-none" do %>
+      <%= link_to vision_path(vision.id), class: "col-sm-4 col-8 text-center my-auto text-dark text-decoration-none" do %>
       <div class="text-left text-dark username-font"><%= vision.user.name %></div>
         <p class="p-2 font m-0 vision-font"><%= vision.title %></p>
     <% end %>
@@ -22,10 +22,10 @@
         <!--全てのタスクが完了後のファイルの有無-->
         <% if vision.production.present? %>
           <%= link_to rails_blob_path(vision.production, disposition: "inline"), target: '_blank' do %>
-            <%= "Goal File" %>
+            <p class="font"><%= "Goal File" %></p>
           <% end %>
         <% else %>
-          <p>ファイルがありません</p>
+          <p class="font">NO File</p>
         <% end %>
       <% else %>
         <!--タスクの達成割合表-->
