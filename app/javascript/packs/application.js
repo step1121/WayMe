@@ -66,8 +66,10 @@ $(window).on('turbolinks:load', function() {
 });
 
 // メッセージ画面スクロールバー自動下降（メッセージ送信時）
+
 $(function() {
-  const add = document.getElementById("add-btn");
+  const add = document.getElementById("add");
+  if (!add){ return false;}
   add.addEventListener("click", () => {
     const bar = document.getElementById('bar');
     bar.scrollTo(0, bar.scrollHeight);

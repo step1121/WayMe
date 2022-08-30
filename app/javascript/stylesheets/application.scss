@@ -102,8 +102,8 @@
 }
 
 .profile-image{
-  height: 100px;
-  width: 100px;
+  height: 80px;
+  width: 80px;
 }
 
 .comment-profile-image{
@@ -120,16 +120,15 @@
 }
 
 .vision-font{
-  font-size:min(4vw,20px);
+  font-size:min(3.5vw, 18px);
 }
 
 .username-font{
-  font-size:min(4.5vw,25px);
+  font-size:min(4vw,20px);
 }
 
 .count-font {
-  font-size:min(3.0vw,20px);
-  text-aline: center;
+  font-size:min(3.0vw,16px);
 }
 
 .comment-count-font {
