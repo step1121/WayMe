@@ -51,6 +51,7 @@ class Public::VisionsController < ApplicationController
   end
 
   def update
+    print()
     @vision.update(vision_params) ? (redirect_to vision_path(@vision)) : (render :edit)
   end
 
