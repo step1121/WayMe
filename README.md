@@ -1,4 +1,4 @@
-# <img src="![AdobeStock_325527702](https://user-images.githubusercontent.com/104072020/190033419-4191d053-bcb2-48ea-b8ff-839895b99b51.png)" width="50px">WayMe
+![AdobeStock_325527702](https://user-images.githubusercontent.com/104072020/190033419-4191d053-bcb2-48ea-b8ff-839895b99b51.png) WayMe
 
 ## サイト概要
 
@@ -53,7 +53,7 @@ https://wayme.met
 
 [**テーブル定義書**](https://github.com/step1121/WayMe/files/9558205/WayMe_.pdf)
 
-[**UIFLows**](https://user-images.githubusercontent.com/104072020/189932860-115cbe48-c630-4541-9654-30ed900463f3.png){:target="_blank"}
+[**UIFLows**](https://user-images.githubusercontent.com/104072020/189932860-115cbe48-c630-4541-9654-30ed900463f3.png)
 
 [**アプリケーション詳細設計書**](https://github.com/step1121/WayMe/files/9558214/WayMe_.-.routes.pdf)
 
