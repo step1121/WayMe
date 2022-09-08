@@ -26,9 +26,9 @@
     </div>
 
     <div class="row d-flex justify-content-between">
-      <div class="col-sm-5 col-7 font"><%= @vision.body %></div>
+      <div class="col-sm-5 col-7 font my-auto"><%= @vision.body %></div>
 
-      <div class="col text-center">
+      <div class="col text-center my-auto">
         <%= render "public/visions/count", vision: @vision %>
       </div>
 
@@ -37,20 +37,18 @@
         <!--全タスク完了か否か分岐-->
         <% if vision.tasks.where(completion_status: true).count == vision.tasks.count && vision.tasks.count != 0 %>
           <!--全タスク完了時のファイルアップロード状況-->
-          <% if vision.production.present? %>
-            <%= link_to rails_blob_path(vision.production, disposition: "inline") do %>
-			  	    <%= "Goal File" %>
-            <% end %>
+          <% if vision.production_image.present? %>
+            <p><%= image_tag vision.production_image, class: "rounded production-image" %></p>
 
 	  	    <% else %>
 	  	      <%= form_with model:vision, url: vision_path(vision) do |f| %>
-	  	        <%= f.label :production do %>
+	  	        <%= f.label :production_image do %>
 	  	          <p class="font">
 	  	            🎉達成おめでとうございます🎉<br>
-	  	            ここをクリックして成果を<br>
+	  	            ここをクリックして記念写真を<br>
 	  	            アップしましょう！！👆
 	  	            </p>
-  	  	        <%= f.file_field :production, class: "d-none" %>
+  	  	        <%= f.file_field :production_image, class: "d-none" %>
   	  	        <%= f.submit "アップロード" %>
 	  	        <% end %>
             <% end %>
@@ -72,6 +70,15 @@
           <% end %>
         <% end %>
       </div>
+    <% else %>
+      <div class="col-sm-5 text-center my-auto ml-auto">
+        <!--全タスク完了か否か分岐-->
+        <% if vision.tasks.where(completion_status: true).count == vision.tasks.count && vision.tasks.count != 0 %>
+          <!--全タスク完了時のファイルアップロード状況-->
+            <p><%= image_tag vision.get_production_image, class: "rounded production-image" %></p>
+        <% end %>
+      </div>
+
     <% end %>
 
   </div>

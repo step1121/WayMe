@@ -24,7 +24,7 @@ class Public::VisionsController < ApplicationController
     # 公開Vision_ID取得
     vision_no_private = Vision.no_private
     # 入会中　公開、相互フォローの非公開　Vision_IDの取得
-    visions = vision_on_private.where(user_id: users_follows.ids).or(vision_no_private.where(user_id: users.ids)).order(created_at: :desc)
+    visions = vision_on_private.where(user_id: users_follows.ids).or(vision_no_private.where(user_id: users.ids))
     # ジャンル検索時
     genre_visions = visions.where(genre_id: params[:genre_id]).order(created_at: :desc)
     if params[:genre_id].present?
@@ -33,9 +33,9 @@ class Public::VisionsController < ApplicationController
     end
 
     # 未達成VISION
-    @visions_still = visions.still
+    @visions_still = visions.still.order(created_at: :desc)
     # 達成VISION
-    @visions_finish = visions.finish
+    @visions_finish = visions.finish.order(update_at: :desc)
   end
 
   def show
@@ -64,7 +64,7 @@ class Public::VisionsController < ApplicationController
   private
 
   def vision_params
-    params.require(:vision).permit(:title, :body, :finish_on, :genre_id, :finish_status, :production, :release_status)
+    params.require(:vision).permit(:title, :body, :finish_on, :genre_id, :finish_status, :production_image, :release_status)
   end
 
   def ensure_vision
