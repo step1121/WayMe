@@ -36,7 +36,7 @@ Rails.application.routes.draw do
 
     resources :visions do
       resource :fights, only: [:create, :destroy]
-      resources :comments, only: [:create, :destroy, :index]
+      resources :vision_comments, only: [:create, :destroy, :index]
       resources :tasks, except: [:new, :show]
       patch 'tasks/:id/complete' => 'tasks#complete', as: "complete"
     end

@@ -37,13 +37,13 @@
       </div>
     </div>
 
-    <h4 class="comments-counter comment-count-font"><%= render "public/comments/counter", vision: @vision %></h4>
+    <h4 class="comments-counter comment-count-font"><%= render "public/vision_comments/counter", vision: @vision %></h4>
     <div class="comment-area border-top border-bottom p-3 comment-bar">
-      <%= render "public/comments/comment_index", comments: @comments %>
+      <%= render "public/vision_comments/comment_index", vision_comments: @vision_comments %>
     </div>
 
     <div class=" d-flex justify-content-center pt-2 mt-2">
-      <%= render "public/comments/form", vision: @vision, comment: @comment %>
+      <%= render "public/vision_comments/form", vision: @vision, vision_comment: @vision_comment %>
     </div>
 
   </div>
