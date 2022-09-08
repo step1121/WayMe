@@ -1,5 +1,5 @@
 class Vision < ApplicationRecord
-  has_one_attached :production
+  has_one_attached :production_image
   belongs_to :user
   belongs_to :genre
   has_many :tasks, dependent: :destroy
@@ -25,6 +25,14 @@ class Vision < ApplicationRecord
   def dae_before_start
     return if finish_on.blank?
     errors.add(:finish_on, "は本日以降を選択してください") if finish_on < Date.today
+  end
+
+  def get_production_image
+    if production_image.attached?
+      production_image
+    else
+      'no_production_image.jpg'
+    end
   end
 
 end
