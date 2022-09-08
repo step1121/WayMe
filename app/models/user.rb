@@ -15,7 +15,7 @@ class User < ApplicationRecord
   has_many :chats
   has_many :rooms, through: :user_rooms
   has_many :fights
-  has_many :comments, dependent: :destroy
+  has_many :vision_comments, dependent: :destroy
 
   scope :no_outcheck, -> { joins(:visions).where(user_status: false) }
 

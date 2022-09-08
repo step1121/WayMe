@@ -1,16 +1,15 @@
 class Vision < ApplicationRecord
-  has_one_attached :production
+  has_one_attached :production_image
   belongs_to :user
   belongs_to :genre
   has_many :tasks, dependent: :destroy
   has_many :fights, dependent: :destroy
-  has_many :comments, dependent: :destroy
+  has_many :vision_comments, dependent: :destroy
 
   validates :title, length: { minimum: 2, maximum: 20 }, presence: true
   validates :body, length: { maximum: 100 }
   validates :finish_on, presence: true
   validate :dae_before_start
-  # validate :validate_production
 
   enum release_status: { public: 0, private: 1 }, _prefix: true
 
@@ -28,11 +27,12 @@ class Vision < ApplicationRecord
     errors.add(:finish_on, "は本日以降を選択してください") if finish_on < Date.today
   end
 
-  # def validate_production
-  #   if production.present?
-  #     production.purge
-  #     errors.add(:production, "ファイルを指定して下さい")
-  #   end
-  # end
+  def get_production_image
+    if production_image.attached?
+      production_image
+    else
+      'no_production_image.jpg'
+    end
+  end
 
 end

@@ -1,0 +1,6 @@
+<%= form_with(model:[vision, vision_comment], local: false) do |f| %>
+  <%= f.text_field :comment, placeholder: "コメント", class: "rounded-pill" %>
+  <div class="errors">
+   <%= render "public/shared/error_messages", resource: @vision_comment, attribute: :comment %>
+  </div>
+<% end %>
