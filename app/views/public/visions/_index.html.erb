@@ -4,7 +4,7 @@
 
       <div class="col-sm-2 col-4 d-flex justify-content-center my-sm-auto">
         <%= link_to user_path(vision.user), class: "text-decoration-none" do %>
-          <div class="profile_image"><%= image_tag vision.user.get_profile_image , class: "rounded-circle profile-image" %></div>
+          <div><%= image_tag vision.user.get_profile_image , class: "rounded-circle profile-image" %></div>
         <% end %>
       </div>
 
@@ -19,14 +19,8 @@
         <p class="text-danger">No Task</p>
 
       <% elsif vision.tasks.where(completion_status: true).count == vision.tasks.count %>
-        <!--全てのタスクが完了後のファイルの有無-->
-        <% if vision.production.present? %>
-          <%= link_to rails_blob_path(vision.production, disposition: "inline"), target: '_blank' do %>
-            <p class="font"><%= "Goal File" %></p>
-          <% end %>
-        <% else %>
-          <p class="font">NO File</p>
-        <% end %>
+        <p><%= image_tag vision.get_production_image, class: "rounded production-image" %></p>
+
       <% else %>
         <!--タスクの達成割合表-->
         <canvas id="<%= vision.id %>"></canvas>
