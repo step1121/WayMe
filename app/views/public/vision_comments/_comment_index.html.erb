@@ -1,6 +1,6 @@
 <table>
   <tbody>
-      <% comments.each do |comment| %>
+      <% vision_comments.each do |comment| %>
       <tr class="row mb-4">
         <td class="my-auto mr-1">
           <%= link_to user_path(comment.user) do %>
@@ -11,7 +11,7 @@
         <td class="my-auto mr-1 text-break"><%= comment.comment %></td>
         <td class="my-auto ml-auto">
           <% if comment.user == current_user %>
-            <%= link_to vision_comment_path(vision_id: comment.vision_id, id: comment), method: :delete, remote: true do %>
+            <%= link_to vision_vision_comment_path(vision_id: comment.vision_id, id: comment), method: :delete, remote: true do %>
               <i class="far fa-trash-alt fa-lg" style="color: red;"></i>
             <% end %>
           <% end %>

@@ -4,7 +4,7 @@ class Vision < ApplicationRecord
   belongs_to :genre
   has_many :tasks, dependent: :destroy
   has_many :fights, dependent: :destroy
-  has_many :comments, dependent: :destroy
+  has_many :vision_comments, dependent: :destroy
 
   validates :title, length: { minimum: 2, maximum: 20 }, presence: true
   validates :body, length: { maximum: 100 }

@@ -28,5 +28,5 @@ ja:
         message: メッセージ
       genre:
         name: カテゴリー名
-      comment:
+      vision_comment:
         comment: コメント
