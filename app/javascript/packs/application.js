@@ -56,6 +56,7 @@ $(function(){
   $('#hello').fadeOut(5000);
 });
 
+// メッセージ画面スクロールバー自動下降
 $(window).on('turbolinks:load', function() {
   $(function() {
     const bar = document.getElementById('bar');
@@ -64,8 +65,12 @@ $(window).on('turbolinks:load', function() {
   });
 });
 
-$('.message').on('submit', function() {
-  $(function() {
+// メッセージ画面スクロールバー自動下降（メッセージ送信時）
+
+$(function() {
+  const add = document.getElementById("add");
+  if (!add){ return false;}
+  add.addEventListener("click", () => {
     const bar = document.getElementById('bar');
     bar.scrollTo(0, bar.scrollHeight);
   });
