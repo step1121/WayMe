@@ -1,7 +1,0 @@
-<%= form_with(model:[vision, comment], local: false) do |f| %>
-  <%= f.text_field :comment, placeholder: "コメント", class: "rounded" %>
-  <%= f.submit "送信", class: "btn btn-sm btn-outline-success rounded" , id: "add" %>
-  <div class="errors">
-   <%= render "public/shared/error_messages", resource: @comment, attribute: :comment %>
-  </div>
-<% end %>
