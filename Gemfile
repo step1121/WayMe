@@ -64,7 +64,18 @@ gem 'enum_help'
 gem "chartkick"
 gem 'chartable'
 
+# パスワードなどの秘密情報を管理するgem
 gem 'dotenv-rails'
+
 group :production do
+  # mysql2へアクセスするためのgem
   gem 'mysql2'
+  # S3へアクセスするためのgem
+  gem "aws-sdk-s3", require: false
+  # 画像処理を行うためのgem
+  gem 'image_processing', '~> 1.2'
 end
+
+
+
+
