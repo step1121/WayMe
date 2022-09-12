@@ -75,7 +75,3 @@ group :production do
   # 画像処理を行うためのgem
   gem 'image_processing', '~> 1.2'
 end
-
-
-
-
