@@ -15,9 +15,9 @@ class Public::TasksController < ApplicationController
       redirect_to vision_path(@vision)
     else
       @tasks = @vision.tasks.order(completion_on: "ASC")
-      # 未完了TASK
+      # 未完了タスク
       @tasks_yet = @tasks.yet
-      # 完了TASK
+      # 完了タスク
       @tasks_complete =@tasks.complete
       render 'public/visions/show'
     end
@@ -34,7 +34,7 @@ class Public::TasksController < ApplicationController
 
   def complete
     @tasks = @vision.tasks.all
-    # TASKステータスの切り替え
+    # タスクステータスの切り替え
     @task.completion_status == false ? (@task.update(completion_status: true)) : (@task.update(completion_status: false))
     # 全TASK完了ステータスとVISION達成ステータスの連動
     @tasks.where(completion_status: true).count != @tasks.count ? (@vision.update(finish_status: false)) : (@vision.update(finish_status: true))
