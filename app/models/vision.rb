@@ -1,5 +1,7 @@
 class Vision < ApplicationRecord
+  
   has_one_attached :production_image
+  
   belongs_to :user
   belongs_to :genre
   has_many :tasks, dependent: :destroy
@@ -17,11 +19,13 @@ class Vision < ApplicationRecord
   scope :finish, -> { where(finish_status: true) }
   scope :no_private, -> { where(release_status: false) }
   scope :on_private, -> { where(release_status: true) }
-
+  
+  # ビジョン検索方法
   def self.search_for(content)
     Vision.where(['title LIKE ? OR body LIKE ?', "%#{content}%","%#{content}%"])
   end
 
+  # ビジョンの達成日のバリデーション
   def dae_before_start
     return if finish_on.blank?
     errors.add(:finish_on, "は本日以降を選択してください") if finish_on < Date.today

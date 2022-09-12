@@ -1,5 +1,4 @@
 <div class="row">
-
   <div class="col-3 d-flex justify-content-center my-auto">
     <%= link_to user_path(@vision.user) do %>
       <div class="profile_image pb-3"><%= image_tag @vision.user.get_profile_image, class: "rounded-circle profile-image" %></div>
@@ -32,28 +31,31 @@
         <%= render "public/visions/count", vision: @vision %>
       </div>
 
+    
     <% if vision.user == current_user %>
       <div class="col-sm-5 text-center my-auto ml-auto">
-        <!--全タスク完了か否か分岐-->
+      <!--全タスク完了か否か分岐-->
+        <!--全タスク完了時-->
         <% if vision.tasks.where(completion_status: true).count == vision.tasks.count && vision.tasks.count != 0 %>
-          <!--全タスク完了時のファイルアップロード状況-->
+          <!--全タスク完了時の写真アップロード状況-->
           <% if vision.production_image.present? %>
             <p><%= image_tag vision.production_image, class: "rounded production-image" %></p>
 
-	  	    <% else %>
-	  	      <%= form_with model:vision, url: vision_path(vision) do |f| %>
-	  	        <%= f.label :production_image do %>
-	  	          <p class="font">
-	  	            🎉達成おめでとうございます🎉<br>
-	  	            ここをクリックして記念写真を<br>
-	  	            アップしましょう！！👆
-	  	            </p>
-  	  	        <%= f.file_field :production_image, class: "d-none" %>
-  	  	        <%= f.submit "アップロード" %>
-	  	        <% end %>
+          <% else %>
+            <%= form_with model:vision, url: vision_path(vision) do |f| %>
+              <%= f.label :production_image do %>
+                <p class="font">
+                  🎉達成おめでとうございます🎉<br>
+                  ここをクリックして記念写真を<br>
+                  アップしましょう！！👆
+                  </p>
+                <%= f.file_field :production_image, class: "d-none" %>
+                <%= f.submit "アップロード" %>
+              <% end %>
             <% end %>
           <% end %>
-
+        
+        <!--未完了タスクがある場合-->
         <% else %>
           <%= form_with model:[vision, @task], url: vision_tasks_path(vision.id), method: :post  do |f| %>
             <div class="col mb-3 px-0">
@@ -72,14 +74,12 @@
       </div>
     <% else %>
       <div class="col-sm-5 text-center my-auto ml-auto">
-        <!--全タスク完了か否か分岐-->
+      <!--全タスク完了か否か分岐-->
+        <!--全タスク完了時-->
         <% if vision.tasks.where(completion_status: true).count == vision.tasks.count && vision.tasks.count != 0 %>
-          <!--全タスク完了時のファイルアップロード状況-->
-            <p><%= image_tag vision.get_production_image, class: "rounded production-image" %></p>
+          <p><%= image_tag vision.get_production_image, class: "rounded production-image" %></p>
         <% end %>
       </div>
-
     <% end %>
-
   </div>
 </div>
