@@ -2,9 +2,9 @@
   <% users.each do |user| %>
     <div class="row col-12 shadow p-2 mb-3 bg-white rounded mx-auto">
 
-			<%= link_to user_path(user), class: "row col-9 text-decoration-none" do %>
-				<div class="profile_image col-4 px-0"><%= image_tag user.get_profile_image, size: "75x75", class: "rounded-circle" %></div>
-				<div class="col-4 text-center text-dark my-auto px-0"><%= user.name %></div>
+      <%= link_to user_path(user), class: "row col-9 text-decoration-none" do %>
+        <div class="profile_image col-4 px-0"><%= image_tag user.get_profile_image, size: "75x75", class: "rounded-circle" %></div>
+        <div class="col-4 text-center text-dark my-auto px-0"><%= user.name %></div>
         <div class="col-4 text-center text-dark my-auto px-0">Way <%= user.visions.count %></div>
       <% end %>
 

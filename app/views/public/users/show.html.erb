@@ -19,7 +19,8 @@
             <p class="text-right"><i class="fas fa-pen "></i></p>
             <% end %>
           <% end %>
-
+          
+          <!--相互フォロー時にメッセッジリンク表示-->
           <% if current_user != @user && current_user.following?(@user) && @user.following?(current_user) %>
             <%= link_to "メッセージ",  chat_path(@user.id), class: "btn btn-outline-primary btn-sm rounded-pill follow-font" %>
           <% end %>
@@ -52,10 +53,12 @@
             </div>
 
           <!--タブで選択された要素部分-->
+          <!--未達成ビジョンの一覧-->
           <div class="row col-sm-12 mx-auto tabbox box-show ">
             <%= render "public/visions/index", visions: @visions_still %>
           </div>
 
+          <!--達成ビジョンの一覧-->
           <div class="row col-sm-12 mx-auto tabbox">
             <%= render "public/visions/index", visions: @visions_finish %>
           </div>
