@@ -13,6 +13,7 @@
     </div>
 
     <!--タスク完了日時と現在の日時の差による分岐-->
+    <!--タスク完了日時が予定日を過ぎていない場合-->
     <% if (t.completion_on - Date.today) > -1 %>
       <div class="col-6 col-sm-4 my-auto font">
         残 <%=(t.completion_on - Date.today).to_i %> 日
@@ -26,6 +27,7 @@
         <% end %>
       </div>
 
+    <!--タスク完了日時が予定日を過ぎている場合-->
     <% else %>
       <div class="col-6 col-sm-4 my-auto font">
         <i class="fas fa-exclamation-triangle" style="color: red;"></i> <%= (t.completion_on - Date.today).to_i * -1 %> 日超過 <i class="fas fa-exclamation-triangle" style="color: red;"></i>

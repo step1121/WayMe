@@ -34,6 +34,7 @@ class Public::SessionsController < Devise::SessionsController
     root_path
   end
 
+  # 退会ユーザーがログインしてきたときの動作
   def reject_inactive_user
     @user = User.find_by(name: params[:user][:name])
     if @user
