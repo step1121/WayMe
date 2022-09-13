@@ -13,7 +13,7 @@ class User < ApplicationRecord
   # フォロー一覧画面で使う
   has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :reverse_of_relationships, source: :follower
-  
+
   has_many :user_rooms
   has_many :chats
   has_many :rooms, through: :user_rooms
@@ -35,11 +35,11 @@ class User < ApplicationRecord
     end
   end
 
-　# フォローしたときの処理
+  # フォローしたときの処理
   def follow(user_id)
     relationships.create(followed_id: user_id)
   end
-  
+
   # フォローを外すときの処理
   def unfollow(user_id)
     relationships.find_by(followed_id: user_id).destroy
