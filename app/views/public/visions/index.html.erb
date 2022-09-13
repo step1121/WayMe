@@ -21,10 +21,12 @@
     </div>
     <!--タブで選択された要素部分-->
     <div class="row col-sm-10  mx-auto tabbox box-show ">
+      <!--未達成ビジョンの一覧-->
       <%= render "index", visions: @visions_still %>
     </div>
 
     <div class="row col-sm-10 mx-auto tabbox">
+      <!--達成ビジョンの一覧-->
       <%= render "index", visions: @visions_finish %>
     </div>
 
