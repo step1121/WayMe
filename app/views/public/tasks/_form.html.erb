@@ -3,9 +3,11 @@
     <%= f.text_field :content, placeholder: "TASK", class: 'form-control task_content' %>
     <%= render "public/shared/error_messages", resource: @task, attribute: :body %>
   </div>
-
+  
+  <!--TASK編集画面の時-->
   <% unless current_page?(vision_path(@vision.id))%>
       <div class="row mb-3 col">
+        <!--完了予定日選択欄-->
         <%= f.date_select :completion_on, use_month_numbers: true, start_year: Time.now.year, end_year: vision.finish_on.year, selected: obj %>
       </div>
 
@@ -13,7 +15,7 @@
         <%= link_to 'Destroy',  vision_task_path(vision_id: @vision.id, id: @task.id), method: :delete, data: { confirm: '本当にこのタスクを消しますか？' }, class: "btn btn-outline-danger btn-lg col-4 font" %>
         <%= f.submit "Edit", class: "btn btn-outline-success btn-lg col-4 font" %>
       </div>
-
+  <!--TASK編集画面以外の時-->
   <% else %>
     <div class="col mb-3 px-0 d-flex justify-content-between">
         <%= f.date_select :completion_on, use_month_numbers: true, start_year: Time.now.year, end_year: vision.finish_on.year, selected: obj %>

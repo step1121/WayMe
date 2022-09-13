@@ -14,38 +14,7 @@
       <% end %>
 
       <div class="col-sm-3 d-flex justify-content-center my-sm-auto my-3">
-      <!--タスクの数によって分岐-->
-        <!--タスク0個の場合-->
-        <% if vision.tasks.count == 0 %>
-          <p class="text-danger">No Task</p>
-        
-        <!--タスクがすべて完了時ている時の場合-->
-        <% elsif vision.tasks.where(completion_status: true).count == vision.tasks.count %>
-          <p><%= image_tag vision.get_production_image, class: "rounded production-image" %></p>
-        
-        <!--未完了のタスクがある場合-->
-        <% else %>
-          <!--タスクの達成割合グラフ-->
-          <canvas id="<%= vision.id %>"></canvas>
-          <script>
-            var ctx = document.getElementById("<%= vision.id %>");
-            var data = [<%= vision.tasks.where(completion_status: true).count %>, <%= vision.tasks.where(completion_status: false).count %>]
-            var myLineChart = new Chart(ctx, {
-              type: 'pie' ,
-              data: {
-                labels: ['達成', '未達成'],
-                datasets: [{
-                  data: data,
-                  backgroundColor: ['#48f', '#e03448'],
-                }],
-              },
-              Options: {
-                pie: {
-                }
-              }
-            });
-          </script>
-        <% end %>
+      
       </div>
 
       <div class="col-sm col-6 text-center my-auto">

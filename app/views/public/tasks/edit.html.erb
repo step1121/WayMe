@@ -8,6 +8,7 @@
       <div class="text-left font"><%= render "public/shared/error_messages", resource: @task, attribute: :content %></div>
 
       <div class="row mb-3 col">
+        <!--完了予定日選択欄-->
         <%= f.date_select :completion_on, use_month_numbers: true, start_year: Time.now.year, end_year: @vision.finish_on.year, selected: @task.completion_on %>
       </div>
       <div class="text-left font"><%= render "public/shared/error_messages", resource: @task, attribute: :completion_on %></div>

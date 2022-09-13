@@ -18,10 +18,12 @@
       
       <!--タブで選択された要素部分-->
       <div class="tabbox box-show py-3 px-0">
+        <!--フォロー一覧-->
         <%= render 'follow', users: @users_followings %>
       </div>
       
       <div class="tabbox">
+        <!--フォロワー一覧-->
         <%= render 'follow', users: @users_followers %>
       </div>
     </div>

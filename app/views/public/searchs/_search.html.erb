@@ -1,10 +1,14 @@
-<% if user_signed_in? %>
+
 <!--現在いるページによってのPATHの送り先を分岐-->
+<% if user_signed_in? %>
+
+  <!--ビジョン一覧画面で表示-->
   <% if request.path.include?("visions") %>
     <%= form_with url: visions_search_path, method: :get do |f|  %>
       <%= f.text_field 'content', required: true, placeholder: "キーワード検索", class: "rounded-pill form-control" %>
     <% end %>
 
+  <!--フォロー一覧画面で表示-->
   <% elsif request.path.include?("user")%>
     <%= form_with url: users_search_path, method: :get do |f|  %>
       <%= f.text_field 'content', required: true, placeholder: "ユーザー検索", class: "rounded-pill form-control" %>

@@ -1,5 +1,5 @@
 class Public::VisionCommentsController < ApplicationController
-before_action :authenticate_user!
+  before_action :authenticate_user!
   before_action :set_comments
 
   def create
@@ -24,6 +24,7 @@ before_action :authenticate_user!
   end
 
   private
+  
     def vision_comment_params
       params.require(:vision_comment).permit(:comment, :user_id, :vision_id)
     end

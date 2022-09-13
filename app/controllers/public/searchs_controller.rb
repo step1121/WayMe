@@ -3,19 +3,19 @@ class Public::SearchsController < ApplicationController
 
   # ユーザー検索
   def search_user
-		@content = params[:content]
-		@records = User.search_for(@content)
+    @content = params[:content]
+    @records = User.search_for(@content)
   end
 
   # ビジョン検索
   def search_vision
-		@content = params[:content]
-		@records = Vision.search_for(@content)
-		# 退会済みユーザーの投稿を除去
+    @content = params[:content]
+    @records = Vision.search_for(@content)
+    # 退会済みユーザーの投稿を除去
     users = User.no_outcheck
     # 相互フォローのユーザーID,自分のID取得
     users_follows = users.joins(:visions).where(id: current_user.followings.ids).where(id: current_user.followers.ids).or(users.where(id: current_user.id))
-		# 非公開Vision_ID取得
+    # 非公開Vision_ID取得
     vision_on_private = @records.on_private
     # 公開Vision_ID取得
     vision_no_private = @records.no_private

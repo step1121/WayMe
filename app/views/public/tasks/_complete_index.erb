@@ -12,6 +12,7 @@
 
     <div class="col text-right">
       <% if t.vision.user == current_user %>
+        <!--完了から未完了に戻すボタン-->
         <%= form_with model:t, url: vision_complete_path(t.vision.id, t.id), method: :patch do |f| %>
           <%= f.submit "RETURN", class: "btn btn-outline-primary btn-sm font" %>
         <% end %>

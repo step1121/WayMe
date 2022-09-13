@@ -15,14 +15,13 @@ class Admin::VisionsController < ApplicationController
     redirect_to admin_visions_path
   end
 
-
   private
 
-  def vision_params
-    params.require(:vision)
-  end
-
-  def ensure_vision
-    @vision = Vision.find(params[:id])
-  end
+    def vision_params
+      params.require(:vision)
+    end
+  
+    def ensure_vision
+      @vision = Vision.find(params[:id])
+    end
 end

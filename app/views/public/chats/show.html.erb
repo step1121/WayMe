@@ -11,18 +11,18 @@
     <div class="message col-12 dm-bar" id="bar">
       <% @chats.each do |chat| %>
         <% if chat.user_id == current_user.id %>
-
+          <!--自分が送ったメッセージ-->
           <p class="right-dm-font"><%= chat.message %></p>
 
         <% else %>
-
+          <!--相手が送ったメッセージ-->
           <p class="left-dm-font mr-5 bg-secondary"><%= chat.message %></p>
-
         <% end %>
       <% end %>
     </div>
 
     <div class="col-12 d-flex justify-content-center border-top pt-2 mt-2">
+      <!--非同期通信-->
       <%= form_with model: @chat, data: {remote: true} do |f| %>
         <%= f.text_field :message, placeholder: "メッセージ", class: "rounded" %>
         <%= f.hidden_field :room_id %>
