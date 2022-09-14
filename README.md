@@ -1,4 +1,4 @@
-# <img src="***![AdobeStock_325527702](https://user-images.githubusercontent.com/104072020/190033419-4191d053-bcb2-48ea-b8ff-839895b99b51.png)***" width="***50px***">WayMe
+# <img src="![AdobeStock_325527702](https://user-images.githubusercontent.com/104072020/190033419-4191d053-bcb2-48ea-b8ff-839895b99b51.png)" width="50px">WayMe
 
 ## サイト概要
 
