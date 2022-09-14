@@ -49,10 +49,10 @@ https://wayme.met
 **AWS構成図**
 ![WayMe_構成図 drawio](https://user-images.githubusercontent.com/104072020/189933350-92502f58-4a20-4d5b-9c08-038041889af2.png)
 
-[**テーブル定義書**](WayMe_テーブル提議書.pdf)
-[**UIFLows**](https://github.com/step1121/WayMe/issues/48#issue-1371579082)
+[**テーブル定義書**](file:///C:/Users/au5ip/Downloads/WayMe_%20(1).pdf)
+[**UIFLows**](file:///C:/Users/au5ip/Downloads/WayMe_.-.routes.pdf)
 [**アプリケーション詳細設計書**](WayMe_アプリケーション詳細設計書 - routes.pdf)
-[**テスト仕様書**](WayMe_テスト仕様書.pdf)
+[**テスト仕様書**](file:///C:/Users/au5ip/Downloads/WayMe_%20(2).pdf)
 
 ## 開発環境
 
