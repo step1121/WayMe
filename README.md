@@ -43,16 +43,17 @@ https://wayme.met
 
 ## 設計書
 
-**ER図**
+>**ER図**
 ![WayMe_ER図 drawio (1)](https://user-images.githubusercontent.com/104072020/189933844-ad719425-0de4-4a88-99ee-cf03b4a8e030.png)
 
-**AWS構成図**
+
+>**AWS構成図**
 ![WayMe_構成図 drawio](https://user-images.githubusercontent.com/104072020/189933350-92502f58-4a20-4d5b-9c08-038041889af2.png)
 
-[**テーブル定義書**](file:///C:/Users/au5ip/Downloads/WayMe_%20(1).pdf)
-[**UIFLows**](file:///C:/Users/au5ip/Downloads/WayMe_.-.routes.pdf)
-[**アプリケーション詳細設計書**](WayMe_アプリケーション詳細設計書 - routes.pdf)
-[**テスト仕様書**](file:///C:/Users/au5ip/Downloads/WayMe_%20(2).pdf)
+>[**テーブル定義書**](https://github.com/step1121/WayMe/files/9558205/WayMe_.pdf)
+>[**UIFLows**](https://user-images.githubusercontent.com/104072020/189932860-115cbe48-c630-4541-9654-30ed900463f3.png)
+>[**アプリケーション詳細設計書**](https://github.com/step1121/WayMe/files/9558214/WayMe_.-.routes.pdf)
+>[**テスト仕様書**](https://github.com/step1121/WayMe/files/9558191/WayMe_.pdf)
 
 ## 開発環境
 
