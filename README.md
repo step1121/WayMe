@@ -9,7 +9,7 @@
 
 ### URL
 
-https://wayme.met
+https://wayme.et
 
 
 ### テーマを選んだ理由
