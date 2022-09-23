@@ -34,7 +34,7 @@ class Public::VisionsController < ApplicationController
     # 未達成ビジョンを格納
     @visions_still = visions.still.order(created_at: :desc)
     # 達成ビジョンを格納
-    @visions_finish = visions.finish.order(update_at: :desc)
+    @visions_finish = visions.finish.order(updated_at: :desc)
   end
 
   def show
